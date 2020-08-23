@@ -1,0 +1,13 @@
+inherit_from:
+  - .rubocop_todo.yml
+  - default.yml
+
+Rails:
+  Enabled: false
+
+RSpec:
+  Enabled: false
+
+Style/StringHashKeys:
+  Exclude:
+    - 'lib/enabler/main.rb'

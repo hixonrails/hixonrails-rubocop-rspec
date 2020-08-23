@@ -1,0 +1,2993 @@
+---
+require:
+- rubocop-performance
+- rubocop-rails
+- rubocop-rake
+- rubocop-rspec
+inherit_mode:
+    merge:
+    - Exclude
+AllCops:
+    RSpec:
+        Patterns:
+        - _spec.rb
+        - "(?:^|/)spec/"
+    RSpec/FactoryBot:
+        Patterns:
+        - spec/factories.rb
+        - spec/factories/**/*.rb
+        - features/support/factories/**/*.rb
+    Exclude:
+    - tmp/**/*
+    - vendor/**/*
+    - script/**/*
+    - node_modules/**/*
+Bundler/DuplicatedGem:
+    Description: Checks for duplicate gem entries in Gemfile.
+    Enabled: true
+    Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+Bundler/GemComment:
+    Description: Add a comment describing each gem.
+    Enabled: false
+    Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+    IgnoredGems: []
+    OnlyFor: []
+Bundler/InsecureProtocolSource:
+    Description: The source `:gemcutter`, `:rubygems` and `:rubyforge` are deprecated
+        because HTTP requests are insecure. Please change your source to 'https://rubygems.org'
+        if possible, or 'http://rubygems.org' if not.
+    Enabled: true
+    Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+Bundler/OrderedGems:
+    Description: Gems within groups in the Gemfile should be alphabetically sorted.
+    Enabled: true
+    TreatCommentsAsGroupSeparators: true
+    ConsiderPunctuation: false
+    Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+Capybara/CurrentPathExpectation:
+    Description: Checks that no expectations are set on Capybara's `current_path`.
+    Enabled: true
+Capybara/FeatureMethods:
+    Description: Checks for consistent method usage in feature specs.
+    Enabled: true
+    EnabledMethods: []
+Capybara/VisibilityMatcher:
+    Description: Checks for boolean visibility in capybara finders.
+    Enabled: true
+FactoryBot/AttributeDefinedStatically:
+    Description: Always declare attribute values as blocks.
+    Enabled: true
+FactoryBot/CreateList:
+    Description: Checks for create_list usage.
+    Enabled: true
+    EnforcedStyle: create_list
+FactoryBot/FactoryClassName:
+    Description: Use string value when setting the class attribute explicitly.
+    Enabled: true
+Gemspec/DuplicatedAssignment:
+    Description: An attribute assignment method calls should be listed only once in
+        a gemspec.
+    Enabled: true
+    Include:
+    - "**/*.gemspec"
+Gemspec/OrderedDependencies:
+    Description: Dependencies in the gemspec should be alphabetically sorted.
+    Enabled: true
+    TreatCommentsAsGroupSeparators: true
+    ConsiderPunctuation: false
+    Include:
+    - "**/*.gemspec"
+Gemspec/RequiredRubyVersion:
+    Description: Checks that `required_ruby_version` of gemspec is specified and equal
+        to `TargetRubyVersion` of .rubocop.yml.
+    Enabled: true
+    Include:
+    - "**/*.gemspec"
+Gemspec/RubyVersionGlobalsUsage:
+    Description: Checks usage of RUBY_VERSION in gemspec.
+    Enabled: true
+    Include:
+    - "**/*.gemspec"
+Layout/AccessModifierIndentation:
+    Description: Check indentation of private/protected visibility modifiers.
+    Enabled: true
+    EnforcedStyle: indent
+    IndentationWidth: 
+Layout/ArgumentAlignment:
+    Description: Align the arguments of a method call if they span more than one line.
+    Enabled: true
+    EnforcedStyle: with_first_argument
+    IndentationWidth: 
+Layout/ArrayAlignment:
+    Description: Align the elements of an array literal if they span more than one
+        line.
+    Enabled: true
+    EnforcedStyle: with_first_element
+    IndentationWidth: 
+Layout/AssignmentIndentation:
+    Description: Checks the indentation of the first line of the right-hand-side of
+        a multi-line assignment.
+    Enabled: true
+    IndentationWidth: 
+Layout/BlockAlignment:
+    Description: Align block ends correctly.
+    Enabled: true
+    EnforcedStyleAlignWith: either
+    SupportedStylesAlignWith:
+    - either
+    - start_of_block
+    - start_of_line
+Layout/BlockEndNewline:
+    Description: Put end statement of multiline block on its own line.
+    Enabled: true
+Layout/CaseIndentation:
+    Description: Indentation of when in a case/when/[else/]end.
+    Enabled: true
+    EnforcedStyle: case
+    IndentOneStep: false
+    IndentationWidth: 
+Layout/ClassStructure:
+    Description: Enforces a configured order of definitions within a class body.
+    Enabled: true
+    Categories:
+        module_inclusion:
+        - extend
+        - prepend
+        - include
+        attribute_macros:
+        - attr_reader
+        - attr_writer
+        - attr_accessor
+        association:
+        - belongs_to
+        - has_one
+        - has_many
+        macros:
+        - act_as_paranoid
+        - commentable
+        - flag
+        - validates
+        - validate
+    ExpectedOrder:
+    - module_inclusion
+    - constants
+    - public_attribute_macros
+    - public_delegate
+    - association
+    - macros
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_attribute_macros
+    - protected_delegate
+    - protected_methods
+    - private_attribute_macros
+    - private_delegate
+    - private_methods
+Layout/ClosingHeredocIndentation:
+    Description: Checks the indentation of here document closings.
+    Enabled: true
+Layout/ClosingParenthesisIndentation:
+    Description: Checks the indentation of hanging closing parentheses.
+    Enabled: true
+Layout/CommentIndentation:
+    Description: Indentation of comments.
+    Enabled: true
+Layout/ConditionPosition:
+    Description: Checks for condition placed in a confusing position relative to the
+        keyword.
+    Enabled: true
+Layout/DefEndAlignment:
+    Description: Align ends corresponding to defs correctly.
+    Enabled: true
+    EnforcedStyleAlignWith: start_of_line
+    SupportedStylesAlignWith:
+    - start_of_line
+    - def
+    Severity: warning
+Layout/DotPosition:
+    Description: Checks the position of the dot in multi-line method calls.
+    Enabled: true
+    EnforcedStyle: leading
+Layout/ElseAlignment:
+    Description: Align elses and elsifs correctly.
+    Enabled: true
+Layout/EmptyComment:
+    Description: Checks empty comment.
+    Enabled: true
+    AllowBorderComment: true
+    AllowMarginComment: true
+Layout/EmptyLineAfterGuardClause:
+    Description: Add empty line after guard clause.
+    Enabled: true
+Layout/EmptyLineAfterMagicComment:
+    Description: Add an empty line after magic comments to separate them from code.
+    Enabled: true
+Layout/EmptyLineAfterMultilineCondition:
+    Description: Enforces empty line after multiline condition.
+    Enabled: true
+    Reference:
+    - https://github.com/airbnb/ruby#multiline-if-newline
+Layout/EmptyLineBetweenDefs:
+    Description: Use empty lines between defs.
+    Enabled: true
+    AllowAdjacentOneLineDefs: false
+    NumberOfEmptyLines: 1
+Layout/EmptyLines:
+    Description: Don't use several empty lines in a row.
+    Enabled: true
+Layout/EmptyLinesAroundAccessModifier:
+    Description: Keep blank lines around access modifiers.
+    Enabled: true
+    EnforcedStyle: around
+    Reference:
+    - https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#follow-the-coding-conventions
+Layout/EmptyLinesAroundArguments:
+    Description: Keeps track of empty lines around method arguments.
+    Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+    Description: Keep blank lines around attribute accessors.
+    Enabled: true
+    AllowAliasSyntax: true
+    AllowedMethods:
+    - alias_method
+    - public
+    - protected
+    - private
+Layout/EmptyLinesAroundBeginBody:
+    Description: Keeps track of empty lines around begin-end bodies.
+    Enabled: true
+Layout/EmptyLinesAroundBlockBody:
+    Description: Keeps track of empty lines around block bodies.
+    Enabled: true
+    EnforcedStyle: no_empty_lines
+Layout/EmptyLinesAroundClassBody:
+    Description: Keeps track of empty lines around class bodies.
+    Enabled: true
+    EnforcedStyle: no_empty_lines
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
+    Description: Keeps track of empty lines around exception handling keywords.
+    Enabled: true
+Layout/EmptyLinesAroundMethodBody:
+    Description: Keeps track of empty lines around method bodies.
+    Enabled: true
+Layout/EmptyLinesAroundModuleBody:
+    Description: Keeps track of empty lines around module bodies.
+    Enabled: true
+    EnforcedStyle: no_empty_lines
+Layout/EndAlignment:
+    Description: Align ends correctly.
+    Enabled: true
+    EnforcedStyleAlignWith: keyword
+    SupportedStylesAlignWith:
+    - keyword
+    - variable
+    - start_of_line
+    Severity: warning
+Layout/EndOfLine:
+    Description: Use Unix-style line endings.
+    Enabled: true
+    EnforcedStyle: native
+Layout/ExtraSpacing:
+    Description: Do not use unnecessary spacing.
+    Enabled: true
+    AllowForAlignment: true
+    AllowBeforeTrailingComments: false
+    ForceEqualSignAlignment: false
+Layout/FirstArgumentIndentation:
+    Description: Checks the indentation of the first argument in a method call.
+    Enabled: true
+    EnforcedStyle: special_for_inner_method_call_in_parentheses
+    IndentationWidth: 
+Layout/FirstArrayElementIndentation:
+    Description: Checks the indentation of the first element in an array literal.
+    Enabled: true
+    EnforcedStyle: special_inside_parentheses
+    IndentationWidth: 
+Layout/FirstArrayElementLineBreak:
+    Description: Checks for a line break before the first element in a multi-line
+        array.
+    Enabled: true
+Layout/FirstHashElementIndentation:
+    Description: Checks the indentation of the first key in a hash literal.
+    Enabled: true
+    EnforcedStyle: special_inside_parentheses
+    IndentationWidth: 
+Layout/FirstHashElementLineBreak:
+    Description: Checks for a line break before the first element in a multi-line
+        hash.
+    Enabled: true
+Layout/FirstMethodArgumentLineBreak:
+    Description: Checks for a line break before the first argument in a multi-line
+        method call.
+    Enabled: true
+Layout/FirstMethodParameterLineBreak:
+    Description: Checks for a line break before the first parameter in a multi-line
+        method parameter definition.
+    Enabled: true
+Layout/FirstParameterIndentation:
+    Description: Checks the indentation of the first parameter in a method definition.
+    Enabled: true
+    EnforcedStyle: consistent
+    IndentationWidth: 
+Layout/HashAlignment:
+    Description: Align the elements of a hash literal if they span more than one line.
+    Enabled: true
+    AllowMultipleStyles: true
+    EnforcedHashRocketStyle: key
+    SupportedHashRocketStyles:
+    - key
+    - separator
+    - table
+    EnforcedColonStyle: key
+    SupportedColonStyles:
+    - key
+    - separator
+    - table
+    EnforcedLastArgumentHashStyle: always_inspect
+    SupportedLastArgumentHashStyles:
+    - always_inspect
+    - always_ignore
+    - ignore_implicit
+    - ignore_explicit
+Layout/HeredocArgumentClosingParenthesis:
+    Description: Checks for the placement of the closing parenthesis in a method call
+        that passes a HEREDOC string as an argument.
+    Enabled: false
+Layout/HeredocIndentation:
+    Description: This cop checks the indentation of the here document bodies.
+    Enabled: true
+Layout/IndentationConsistency:
+    Description: Keep indentation straight.
+    Enabled: true
+    EnforcedStyle: normal
+    Reference:
+    - https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#follow-the-coding-conventions
+Layout/IndentationStyle:
+    Description: Consistent indentation either with tabs only or spaces only.
+    Enabled: true
+    IndentationWidth: 
+    EnforcedStyle: spaces
+Layout/IndentationWidth:
+    Description: Use 2 spaces for indentation.
+    Enabled: true
+    Width: 2
+    IgnoredPatterns: []
+Layout/InitialIndentation:
+    Description: Checks the indentation of the first non-blank non-comment line in
+        a file.
+    Enabled: true
+Layout/LeadingCommentSpace:
+    Description: Comments should start with a space.
+    Enabled: true
+    AllowDoxygenCommentStyle: false
+    AllowGemfileRubyComment: false
+Layout/LeadingEmptyLines:
+    Description: Check for unnecessary blank lines at the beginning of a file.
+    Enabled: true
+Layout/LineLength:
+    Description: Checks that line length does not exceed the configured limit.
+    Enabled: true
+    AutoCorrect: false
+    Max: 120
+    AllowHeredoc: true
+    AllowURI: true
+    URISchemes:
+    - http
+    - https
+    IgnoreCopDirectives: true
+    IgnoredPatterns: []
+Layout/MultilineArrayBraceLayout:
+    Description: Checks that the closing brace in an array literal is either on the
+        same line as the last array element, or a new line.
+    Enabled: true
+    EnforcedStyle: symmetrical
+Layout/MultilineArrayLineBreaks:
+    Description: Checks that each item in a multi-line array literal starts on a separate
+        line.
+    Enabled: true
+Layout/MultilineAssignmentLayout:
+    Description: Check for a newline after the assignment operator in multi-line assignments.
+    Enabled: true
+    SupportedTypes:
+    - block
+    - case
+    - class
+    - if
+    - kwbegin
+    - module
+    EnforcedStyle: same_line
+Layout/MultilineBlockLayout:
+    Description: Ensures newlines after multiline block do statements.
+    Enabled: true
+Layout/MultilineHashBraceLayout:
+    Description: Checks that the closing brace in a hash literal is either on the
+        same line as the last hash element, or a new line.
+    Enabled: true
+    EnforcedStyle: symmetrical
+Layout/MultilineHashKeyLineBreaks:
+    Description: Checks that each item in a multi-line hash literal starts on a separate
+        line.
+    Enabled: true
+Layout/MultilineMethodArgumentLineBreaks:
+    Description: Checks that each argument in a multi-line method call starts on a
+        separate line.
+    Enabled: true
+Layout/MultilineMethodCallBraceLayout:
+    Description: Checks that the closing brace in a method call is either on the same
+        line as the last method argument, or a new line.
+    Enabled: true
+    EnforcedStyle: symmetrical
+Layout/MultilineMethodCallIndentation:
+    Description: Checks indentation of method calls with the dot operator that span
+        more than one line.
+    Enabled: true
+    EnforcedStyle: aligned
+    IndentationWidth: 
+Layout/MultilineMethodDefinitionBraceLayout:
+    Description: Checks that the closing brace in a method definition is either on
+        the same line as the last method parameter, or a new line.
+    Enabled: true
+    EnforcedStyle: symmetrical
+Layout/MultilineOperationIndentation:
+    Description: Checks indentation of binary operations that span more than one line.
+    Enabled: true
+    EnforcedStyle: aligned
+    IndentationWidth: 
+Layout/ParameterAlignment:
+    Description: Align the parameters of a method definition if they span more than
+        one line.
+    Enabled: true
+    EnforcedStyle: with_first_parameter
+    IndentationWidth: 
+Layout/RescueEnsureAlignment:
+    Description: Align rescues and ensures correctly.
+    Enabled: true
+Layout/SpaceAfterColon:
+    Description: Use spaces after colons.
+    Enabled: true
+Layout/SpaceAfterComma:
+    Description: Use spaces after commas.
+    Enabled: true
+Layout/SpaceAfterMethodName:
+    Description: Do not put a space between a method name and the opening parenthesis
+        in a method definition.
+    Enabled: true
+Layout/SpaceAfterNot:
+    Description: Tracks redundant space after the ! operator.
+    Enabled: true
+Layout/SpaceAfterSemicolon:
+    Description: Use spaces after semicolons.
+    Enabled: true
+Layout/SpaceAroundBlockParameters:
+    Description: Checks the spacing inside and after block parameters pipes.
+    Enabled: true
+    EnforcedStyleInsidePipes: no_space
+    SupportedStylesInsidePipes:
+    - space
+    - no_space
+Layout/SpaceAroundEqualsInParameterDefault:
+    Description: Checks that the equals signs in parameter default assignments have
+        or don't have surrounding space depending on configuration.
+    Enabled: true
+    EnforcedStyle: space
+Layout/SpaceAroundKeyword:
+    Description: Use a space around keywords if appropriate.
+    Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+    Description: Checks method call operators to not have spaces around them.
+    Enabled: true
+Layout/SpaceAroundOperators:
+    Description: Use a single space around operators.
+    Enabled: true
+    AllowForAlignment: true
+    EnforcedStyleForExponentOperator: no_space
+    SupportedStylesForExponentOperator:
+    - space
+    - no_space
+Layout/SpaceBeforeBlockBraces:
+    Description: Checks that the left block brace has or doesn't have space before
+        it.
+    Enabled: true
+    EnforcedStyle: space
+    EnforcedStyleForEmptyBraces: space
+    SupportedStylesForEmptyBraces:
+    - space
+    - no_space
+Layout/SpaceBeforeComma:
+    Description: No spaces before commas.
+    Enabled: true
+Layout/SpaceBeforeComment:
+    Description: Checks for missing space between code and a comment on the same line.
+    Enabled: true
+Layout/SpaceBeforeFirstArg:
+    Description: Checks that exactly one space is used between a method name and the
+        first argument for method calls without parentheses.
+    Enabled: true
+    AllowForAlignment: true
+Layout/SpaceBeforeSemicolon:
+    Description: No spaces before semicolons.
+    Enabled: true
+Layout/SpaceInLambdaLiteral:
+    Description: Checks for spaces in lambda literals.
+    Enabled: true
+    EnforcedStyle: require_no_space
+Layout/SpaceInsideArrayLiteralBrackets:
+    Description: Checks the spacing inside array literal brackets.
+    Enabled: true
+    EnforcedStyle: no_space
+    EnforcedStyleForEmptyBrackets: no_space
+    SupportedStylesForEmptyBrackets:
+    - space
+    - no_space
+Layout/SpaceInsideArrayPercentLiteral:
+    Description: No unnecessary additional spaces between elements in %i/%w literals.
+    Enabled: true
+Layout/SpaceInsideBlockBraces:
+    Description: Checks that block braces have or don't have surrounding space. For
+        blocks taking parameters, checks that the left brace has or doesn't have trailing
+        space.
+    Enabled: true
+    EnforcedStyle: space
+    EnforcedStyleForEmptyBraces: no_space
+    SupportedStylesForEmptyBraces:
+    - space
+    - no_space
+    SpaceBeforeBlockParameters: true
+Layout/SpaceInsideHashLiteralBraces:
+    Description: Use spaces inside hash literal braces - or don't.
+    Enabled: true
+    EnforcedStyle: space
+    EnforcedStyleForEmptyBraces: no_space
+    SupportedStylesForEmptyBraces:
+    - space
+    - no_space
+Layout/SpaceInsideParens:
+    Description: No spaces after ( or before ).
+    Enabled: true
+    EnforcedStyle: no_space
+Layout/SpaceInsidePercentLiteralDelimiters:
+    Description: No unnecessary spaces inside delimiters of %i/%w/%x literals.
+    Enabled: true
+Layout/SpaceInsideRangeLiteral:
+    Description: No spaces inside range literals.
+    Enabled: true
+Layout/SpaceInsideReferenceBrackets:
+    Description: Checks the spacing inside referential brackets.
+    Enabled: true
+    EnforcedStyle: no_space
+    EnforcedStyleForEmptyBrackets: no_space
+    SupportedStylesForEmptyBrackets:
+    - space
+    - no_space
+Layout/SpaceInsideStringInterpolation:
+    Description: Checks for padding/surrounding spaces inside string interpolation.
+    Enabled: true
+    EnforcedStyle: no_space
+Layout/TrailingEmptyLines:
+    Description: Checks trailing blank lines and final newline.
+    Enabled: true
+    EnforcedStyle: final_newline
+Layout/TrailingWhitespace:
+    Description: Avoid trailing whitespace.
+    Enabled: true
+    AllowInHeredoc: true
+Lint/AmbiguousBlockAssociation:
+    Description: Checks for ambiguous block association with method when param passed
+        without parentheses.
+    Enabled: true
+    Exclude:
+    - spec/**/*
+Lint/AmbiguousOperator:
+    Description: Checks for ambiguous operators in the first argument of a method
+        invocation without parentheses.
+    Enabled: true
+Lint/AmbiguousRegexpLiteral:
+    Description: Checks for ambiguous regexp literals in the first argument of a method
+        invocation without parentheses.
+    Enabled: true
+Lint/AssignmentInCondition:
+    Description: Don't use assignment in conditions.
+    Enabled: true
+    AllowSafeAssignment: true
+Lint/BigDecimalNew:
+    Description: "`BigDecimal.new()` is deprecated. Use `BigDecimal()` instead."
+    Enabled: true
+Lint/BinaryOperatorWithIdenticalOperands:
+    Description: This cop checks for places where binary operator has identical operands.
+    Enabled: true
+    Safe: false
+Lint/BooleanSymbol:
+    Description: Check for `:true` and `:false` symbols.
+    Enabled: true
+    Safe: false
+Lint/CircularArgumentReference:
+    Description: Default values in optional keyword arguments and optional ordinal
+        arguments should not refer back to the name of the argument.
+    Enabled: true
+Lint/ConstantResolution:
+    Description: Check that constants are fully qualified with `::`.
+    Enabled: false
+    Only: []
+    Ignore: []
+Lint/Debugger:
+    Description: Check for debugger calls.
+    Enabled: true
+Lint/DeprecatedClassMethods:
+    Description: Check for deprecated class method calls.
+    Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+    Description: Don't use algorithm constants for `OpenSSL::Cipher` and `OpenSSL::Digest`.
+    Enabled: true
+Lint/DisjunctiveAssignmentInConstructor:
+    Description: In constructor, plain assignment is preferred over disjunctive.
+    Enabled: true
+    Safe: false
+Lint/DuplicateCaseCondition:
+    Description: Do not repeat values in case conditionals.
+    Enabled: true
+Lint/DuplicateElsifCondition:
+    Description: Do not repeat conditions used in if `elsif`.
+    Enabled: true
+Lint/DuplicateHashKey:
+    Description: Check for duplicate keys in hash literals.
+    Enabled: true
+Lint/DuplicateMethods:
+    Description: Check for duplicate method definitions.
+    Enabled: true
+Lint/DuplicateRequire:
+    Description: Check for duplicate `require`s and `require_relative`s.
+    Enabled: true
+Lint/DuplicateRescueException:
+    Description: Checks that there are no repeated exceptions used in `rescue` expressions.
+    Enabled: true
+Lint/EachWithObjectArgument:
+    Description: Check for immutable argument given to each_with_object.
+    Enabled: true
+Lint/ElseLayout:
+    Description: Check for odd code arrangement in an else block.
+    Enabled: true
+Lint/EmptyConditionalBody:
+    Description: This cop checks for the presence of `if`, `elsif` and `unless` branches
+        without a body.
+    Enabled: true
+    AllowComments: true
+Lint/EmptyEnsure:
+    Description: Checks for empty ensure block.
+    Enabled: true
+Lint/EmptyExpression:
+    Description: Checks for empty expressions.
+    Enabled: true
+Lint/EmptyFile:
+    Description: Enforces that Ruby source files are not empty.
+    Enabled: true
+    AllowComments: true
+Lint/EmptyInterpolation:
+    Description: Checks for empty string interpolation.
+    Enabled: true
+Lint/EmptyWhen:
+    Description: Checks for `when` branches with empty bodies.
+    Enabled: true
+    AllowComments: true
+Lint/EnsureReturn:
+    Description: Do not use return in an ensure block.
+    Enabled: true
+Lint/ErbNewArguments:
+    Description: Use `:trim_mode` and `:eoutvar` keyword arguments to `ERB.new`.
+    Enabled: true
+Lint/FlipFlop:
+    Description: Checks for flip-flops.
+    Enabled: true
+Lint/FloatComparison:
+    Description: Checks for the presence of precise comparison of floating point numbers.
+    Enabled: true
+Lint/FloatOutOfRange:
+    Description: Catches floating-point literals too large or small for Ruby to represent.
+    Enabled: true
+Lint/FormatParameterMismatch:
+    Description: The number of parameters to format/sprint must match the fields.
+    Enabled: true
+Lint/HeredocMethodCallPosition:
+    Description: Checks for the ordering of a method call where the receiver of the
+        call is a HEREDOC.
+    Enabled: false
+Lint/ImplicitStringConcatenation:
+    Description: Checks for adjacent string literals on the same line, which could
+        better be represented as a single string literal.
+    Enabled: true
+Lint/IneffectiveAccessModifier:
+    Description: Checks for attempts to use `private` or `protected` to set the visibility
+        of a class method, which does not work.
+    Enabled: true
+Lint/InheritException:
+    Description: Avoid inheriting from the `Exception` class.
+    Enabled: true
+    EnforcedStyle: runtime_error
+Lint/InterpolationCheck:
+    Description: Raise warning for interpolation in single q strs.
+    Enabled: true
+    Safe: false
+Lint/LiteralAsCondition:
+    Description: Checks of literals used in conditions.
+    Enabled: true
+Lint/LiteralInInterpolation:
+    Description: Checks for literals used in interpolation.
+    Enabled: true
+Lint/Loop:
+    Description: Use Kernel#loop with break rather than begin/end/until or begin/end/while
+        for post-loop tests.
+    Enabled: true
+Lint/MissingCopEnableDirective:
+    Description: Checks for a `# rubocop:enable` after `# rubocop:disable`.
+    Enabled: true
+    MaximumRangeSize: .inf
+Lint/MissingSuper:
+    Description: This cop checks for the presence of constructors and lifecycle callbacks
+        without calls to `super`'.
+    Enabled: true
+Lint/MixedRegexpCaptureTypes:
+    Description: Do not mix named captures and numbered captures in a Regexp literal.
+    Enabled: true
+Lint/MultipleComparison:
+    Description: Use `&&` operator to compare multiple values.
+    Enabled: true
+Lint/NestedMethodDefinition:
+    Description: Do not use nested method definitions.
+    Enabled: true
+Lint/NestedPercentLiteral:
+    Description: Checks for nested percent literals.
+    Enabled: true
+Lint/NextWithoutAccumulator:
+    Description: Do not omit the accumulator when calling `next` in a `reduce`/`inject`
+        block.
+    Enabled: true
+Lint/NonDeterministicRequireOrder:
+    Description: Always sort arrays returned by Dir.glob when requiring files.
+    Enabled: true
+    Safe: false
+Lint/NonLocalExitFromIterator:
+    Description: Do not use return in iterator to cause non-local exit.
+    Enabled: true
+Lint/NumberConversion:
+    Description: Checks unsafe usage of number conversion methods.
+    Enabled: true
+    SafeAutoCorrect: false
+Lint/OrderedMagicComments:
+    Description: Checks the proper ordering of magic comments and whether a magic
+        comment is not placed before a shebang.
+    Enabled: true
+Lint/OutOfRangeRegexpRef:
+    Description: Checks for out of range reference for Regexp because it always returns
+        nil.
+    Enabled: true
+    Safe: false
+Lint/ParenthesesAsGroupedExpression:
+    Description: Checks for method calls with a space before the opening parenthesis.
+    Enabled: true
+Lint/PercentStringArray:
+    Description: Checks for unwanted commas and quotes in %w/%W literals.
+    Enabled: true
+    Safe: false
+Lint/PercentSymbolArray:
+    Description: Checks for unwanted commas and colons in %i/%I literals.
+    Enabled: true
+Lint/RaiseException:
+    Description: Checks for `raise` or `fail` statements which are raising `Exception`
+        class.
+    Enabled: true
+    Safe: false
+    AllowedImplicitNamespaces:
+    - Gem
+Lint/RandOne:
+    Description: Checks for `rand(1)` calls. Such calls always return `0` and most
+        likely a mistake.
+    Enabled: true
+Lint/RedundantCopDisableDirective:
+    Description: 'Checks for rubocop:disable comments that can be removed. Note: this
+        cop is not disabled when disabling all cops. It must be explicitly disabled.'
+    Enabled: true
+Lint/RedundantCopEnableDirective:
+    Description: Checks for rubocop:enable comments that can be removed.
+    Enabled: true
+Lint/RedundantRequireStatement:
+    Description: Checks for unnecessary `require` statement.
+    Enabled: true
+Lint/RedundantSplatExpansion:
+    Description: Checks for splat unnecessarily being called on literals.
+    Enabled: true
+Lint/RedundantStringCoercion:
+    Description: Checks for Object#to_s usage in string interpolation.
+    Enabled: true
+Lint/RedundantWithIndex:
+    Description: Checks for redundant `with_index`.
+    Enabled: true
+Lint/RedundantWithObject:
+    Description: Checks for redundant `with_object`.
+    Enabled: true
+Lint/RegexpAsCondition:
+    Description: Do not use regexp literal as a condition. The regexp literal matches
+        `$_` implicitly.
+    Enabled: true
+Lint/RequireParentheses:
+    Description: Use parentheses in the method call to avoid confusion about precedence.
+    Enabled: true
+Lint/RescueException:
+    Description: Avoid rescuing the Exception class.
+    Enabled: true
+Lint/RescueType:
+    Description: Avoid rescuing from non constants that could result in a `TypeError`.
+    Enabled: true
+Lint/ReturnInVoidContext:
+    Description: Checks for return in void context.
+    Enabled: true
+Lint/SafeNavigationChain:
+    Description: Do not chain ordinary method call after safe navigation operator.
+    Enabled: true
+    AllowedMethods:
+    - present?
+    - blank?
+    - presence
+    - try
+    - try!
+Lint/SafeNavigationConsistency:
+    Description: Check to make sure that if safe navigation is used for a method call
+        in an `&&` or `||` condition that safe navigation is used for all method calls
+        on that same object.
+    Enabled: true
+    AllowedMethods:
+    - present?
+    - blank?
+    - presence
+    - try
+    - try!
+Lint/SafeNavigationWithEmpty:
+    Description: Avoid `foo&.empty?` in conditionals.
+    Enabled: true
+Lint/ScriptPermission:
+    Description: Grant script file execute permission.
+    Enabled: true
+Lint/SelfAssignment:
+    Description: Checks for self-assignments.
+    Enabled: true
+Lint/SendWithMixinArgument:
+    Description: Checks for `send` method when using mixin.
+    Enabled: true
+Lint/ShadowedArgument:
+    Description: Avoid reassigning arguments before they were used.
+    Enabled: true
+    IgnoreImplicitReferences: false
+Lint/ShadowedException:
+    Description: Avoid rescuing a higher level exception before a lower level exception.
+    Enabled: true
+Lint/ShadowingOuterLocalVariable:
+    Description: Do not use the same name as outer local variable for block arguments
+        or block local variables.
+    Enabled: true
+Lint/StructNewOverride:
+    Description: Disallow overriding the `Struct` built-in methods via `Struct.new`.
+    Enabled: true
+Lint/SuppressedException:
+    Description: Don't suppress exceptions.
+    Enabled: true
+    AllowComments: true
+Lint/Syntax:
+    Description: Checks syntax error.
+    Enabled: true
+Lint/ToJSON:
+    Description: 'Ensure #to_json includes an optional argument.'
+    Enabled: true
+Lint/TopLevelReturnWithArgument:
+    Description: This cop detects top level return statements with argument.
+    Enabled: true
+Lint/TrailingCommaInAttributeDeclaration:
+    Description: This cop checks for trailing commas in attribute declarations.
+    Enabled: true
+Lint/UnderscorePrefixedVariableName:
+    Description: Do not use prefix `_` for a variable that is used.
+    Enabled: true
+    AllowKeywordBlockArguments: false
+Lint/UnifiedInteger:
+    Description: Use Integer instead of Fixnum or Bignum.
+    Enabled: true
+Lint/UnreachableCode:
+    Description: Unreachable code.
+    Enabled: true
+Lint/UnreachableLoop:
+    Description: This cop checks for loops that will have at most one iteration.
+    Enabled: true
+Lint/UnusedBlockArgument:
+    Description: Checks for unused block arguments.
+    Enabled: true
+    IgnoreEmptyBlocks: true
+    AllowUnusedKeywordArguments: false
+Lint/UnusedMethodArgument:
+    Description: Checks for unused method arguments.
+    Enabled: true
+    AllowUnusedKeywordArguments: false
+    IgnoreEmptyMethods: true
+    IgnoreNotImplementedMethods: true
+Lint/UriEscapeUnescape:
+    Description: "`URI.escape` method is obsolete and should not be used. Instead,
+        use `CGI.escape`, `URI.encode_www_form` or `URI.encode_www_form_component`
+        depending on your specific use case. Also `URI.unescape` method is obsolete
+        and should not be used. Instead, use `CGI.unescape`, `URI.decode_www_form`
+        or `URI.decode_www_form_component` depending on your specific use case."
+    Enabled: true
+Lint/UriRegexp:
+    Description: Use `URI::DEFAULT_PARSER.make_regexp` instead of `URI.regexp`.
+    Enabled: true
+Lint/UselessAccessModifier:
+    Description: Checks for useless access modifiers.
+    Enabled: true
+    ContextCreatingMethods: []
+    MethodCreatingMethods: []
+Lint/UselessAssignment:
+    Description: Checks for useless assignment to a local variable.
+    Enabled: true
+Lint/UselessElseWithoutRescue:
+    Description: Checks for useless `else` in `begin..end` without `rescue`.
+    Enabled: true
+Lint/UselessMethodDefinition:
+    Description: Checks for useless method definitions.
+    Enabled: true
+    Safe: false
+    AllowComments: true
+Lint/UselessSetterCall:
+    Description: Checks for useless setter call to a local variable.
+    Enabled: true
+    Safe: false
+Lint/Void:
+    Description: Possible use of operator/literal/variable in void context.
+    Enabled: true
+    CheckForMethodsWithNoSideEffects: false
+Metrics/AbcSize:
+    Description: A calculated magnitude based on number of assignments, branches,
+        and conditions.
+    Reference:
+    - http://c2.com/cgi/wiki?AbcMetric
+    - https://en.wikipedia.org/wiki/ABC_Software_Metric
+    Enabled: true
+    IgnoredMethods: []
+    Max: 25
+Metrics/BlockLength:
+    Description: Avoid long blocks with many lines.
+    Enabled: true
+    CountComments: false
+    Max: 25
+    CountAsOne: []
+    ExcludedMethods:
+    - refine
+    Exclude:
+    - spec/**/*
+Metrics/BlockNesting:
+    Description: Avoid excessive block nesting.
+    Enabled: true
+    CountBlocks: false
+    Max: 3
+Metrics/ClassLength:
+    Description: Avoid classes longer than 100 lines of code.
+    Enabled: true
+    CountComments: false
+    Max: 100
+    CountAsOne: []
+Metrics/CyclomaticComplexity:
+    Description: A complexity metric that is strongly correlated to the number of
+        test cases needed to validate a method.
+    Enabled: true
+    IgnoredMethods: []
+    Max: 6
+Metrics/MethodLength:
+    Description: Avoid methods longer than 10 lines of code.
+    Enabled: true
+    CountComments: false
+    Max: 15
+    CountAsOne: []
+    ExcludedMethods: []
+Metrics/ModuleLength:
+    Description: Avoid modules longer than 100 lines of code.
+    Enabled: true
+    CountComments: false
+    Max: 100
+    CountAsOne: []
+Metrics/ParameterLists:
+    Description: Avoid parameter lists longer than three or four parameters.
+    Enabled: true
+    Max: 5
+    CountKeywordArgs: true
+Metrics/PerceivedComplexity:
+    Description: A complexity metric geared towards measuring complexity for a human
+        reader.
+    Enabled: true
+    IgnoredMethods: []
+    Max: 8
+Migration/DepartmentName:
+    Description: Check that cop names in rubocop:disable (etc) comments are given
+        with department name.
+    Enabled: true
+Naming/AccessorMethodName:
+    Description: Check the naming of accessor methods for get_/set_.
+    Enabled: true
+Naming/AsciiIdentifiers:
+    Description: Use only ascii symbols in identifiers and constants.
+    Enabled: true
+    AsciiConstants: true
+Naming/BinaryOperatorParameterName:
+    Description: When defining binary operators, name the argument other.
+    Enabled: true
+Naming/BlockParameterName:
+    Description: Checks for block parameter names that contain capital letters, end
+        in numbers, or do not meet a minimal length.
+    Enabled: true
+    MinNameLength: 1
+    AllowNamesEndingInNumbers: true
+    AllowedNames: []
+    ForbiddenNames: []
+Naming/ClassAndModuleCamelCase:
+    Description: Use CamelCase for classes and modules.
+    Enabled: true
+    AllowedNames:
+    - module_parent
+Naming/ConstantName:
+    Description: Constants should use SCREAMING_SNAKE_CASE.
+    Enabled: true
+Naming/FileName:
+    Description: Use snake_case for source file names.
+    Enabled: true
+    Exclude: []
+    ExpectMatchingDefinition: false
+    CheckDefinitionPathHierarchy: true
+    Regex: 
+    IgnoreExecutableScripts: true
+    AllowedAcronyms:
+    - CLI
+    - DSL
+    - ACL
+    - API
+    - ASCII
+    - CPU
+    - CSS
+    - DNS
+    - EOF
+    - GUID
+    - HTML
+    - HTTP
+    - HTTPS
+    - ID
+    - IP
+    - JSON
+    - LHS
+    - QPS
+    - RAM
+    - RHS
+    - RPC
+    - SLA
+    - SMTP
+    - SQL
+    - SSH
+    - TCP
+    - TLS
+    - TTL
+    - UDP
+    - UI
+    - UID
+    - UUID
+    - URI
+    - URL
+    - UTF8
+    - VM
+    - XML
+    - XMPP
+    - XSRF
+    - XSS
+Naming/HeredocDelimiterCase:
+    Description: Use configured case for heredoc delimiters.
+    Enabled: true
+    EnforcedStyle: uppercase
+Naming/HeredocDelimiterNaming:
+    Description: Use descriptive heredoc delimiters.
+    Enabled: true
+    ForbiddenDelimiters:
+    - !ruby/regexp /(^|\s)(EO[A-Z]{1}|END)(\s|$)/
+Naming/MemoizedInstanceVariableName:
+    Description: Memoized method name should match memo instance variable name.
+    Enabled: true
+    EnforcedStyleForLeadingUnderscores: disallowed
+    SupportedStylesForLeadingUnderscores:
+    - disallowed
+    - required
+    - optional
+Naming/MethodName:
+    Description: Use the configured style when naming methods.
+    Enabled: true
+    EnforcedStyle: snake_case
+    IgnoredPatterns: []
+Naming/MethodParameterName:
+    Description: Checks for method parameter names that contain capital letters, end
+        in numbers, or do not meet a minimal length.
+    Enabled: true
+    MinNameLength: 3
+    AllowNamesEndingInNumbers: true
+    AllowedNames:
+    - at
+    - by
+    - db
+    - id
+    - in
+    - io
+    - ip
+    - of
+    - 'on'
+    - os
+    - pp
+    - to
+    ForbiddenNames: []
+Naming/PredicateName:
+    Description: Check the names of predicate methods.
+    Enabled: true
+    NamePrefix:
+    - is_
+    - has_
+    - have_
+    ForbiddenPrefixes:
+    - is_
+    - has_
+    - have_
+    AllowedMethods:
+    - is_a?
+    MethodDefinitionMacros:
+    - define_method
+    - define_singleton_method
+    Exclude:
+    - spec/**/*
+Naming/RescuedExceptionsVariableName:
+    Description: Use consistent rescued exceptions variables naming.
+    Enabled: true
+    PreferredName: e
+Naming/VariableName:
+    Description: Use the configured style when naming variables.
+    Enabled: true
+    EnforcedStyle: snake_case
+Naming/VariableNumber:
+    Description: Use the configured style when numbering variables.
+    Enabled: true
+    EnforcedStyle: normalcase
+Performance/AncestorsInclude:
+    Description: Use `A <= B` instead of `A.ancestors.include?(B)`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#ancestorsinclude-vs--code
+    Enabled: true
+    Safe: false
+Performance/BigDecimalWithNumericArgument:
+    Description: Convert numeric argument to string before passing to BigDecimal.
+    Enabled: true
+Performance/BindCall:
+    Description: Use `bind_call(obj, args, ...)` instead of `bind(obj).call(args,
+        ...)`.
+    Enabled: true
+Performance/Caller:
+    Description: Use `caller(n..n)` instead of `caller`.
+    Enabled: true
+Performance/CaseWhenSplat:
+    Description: Reordering `when` conditions with a splat to the end of the `when`
+        branches can improve performance.
+    Enabled: true
+    AutoCorrect: false
+    SafeAutoCorrect: false
+Performance/Casecmp:
+    Description: Use `casecmp` rather than `downcase ==`, `upcase ==`, `== downcase`,
+        or `== upcase`..
+    Reference: https://github.com/JuanitoFatas/fast-ruby#stringcasecmp-vs-stringdowncase---code
+    Enabled: true
+    Safe: false
+Performance/ChainArrayAllocation:
+    Description: Instead of chaining array methods that allocate new arrays, mutate
+        an existing array.
+    Reference: https://twitter.com/schneems/status/1034123879978029057
+    Enabled: false
+Performance/CompareWithBlock:
+    Description: Use `sort_by(&:foo)` instead of `sort { |a, b| a.foo <=> b.foo }`.
+    Enabled: true
+Performance/Count:
+    Description: Use `count` instead of `{select,find_all,filter,reject}...{size,count,length}`.
+    SafeAutoCorrect: false
+    Enabled: true
+Performance/DeletePrefix:
+    Description: Use `delete_prefix` instead of `gsub`.
+    Enabled: true
+    SafeMultiline: true
+Performance/DeleteSuffix:
+    Description: Use `delete_suffix` instead of `gsub`.
+    Enabled: true
+    SafeMultiline: true
+Performance/Detect:
+    Description: Use `detect` instead of `select.first`, `find_all.first`, `filter.first`,
+        `select.last`, `find_all.last`, and `filter.last`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#enumerabledetect-vs-enumerableselectfirst-code
+    SafeAutoCorrect: false
+    Enabled: true
+Performance/DoubleStartEndWith:
+    Description: Use `str.{start,end}_with?(x, ..., y, ...)` instead of `str.{start,end}_with?(x,
+        ...) || str.{start,end}_with?(y, ...)`.
+    Enabled: true
+    IncludeActiveSupportAliases: false
+Performance/EndWith:
+    Description: Use `end_with?` instead of a regex match anchored to the end of a
+        string.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end
+    SafeAutoCorrect: false
+    AutoCorrect: false
+    Enabled: true
+    SafeMultiline: true
+Performance/FixedSize:
+    Description: Do not compute the size of statically sized objects except in constants.
+    Enabled: true
+Performance/FlatMap:
+    Description: Use `Enumerable#flat_map` instead of `Enumerable#map...Array#flatten(1)`
+        or `Enumberable#collect..Array#flatten(1)`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#enumerablemaparrayflatten-vs-enumerableflat_map-code
+    Enabled: true
+    EnabledForFlattenWithoutParams: false
+Performance/InefficientHashSearch:
+    Description: Use `key?` or `value?` instead of `keys.include?` or `values.include?`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#hashkey-instead-of-hashkeysinclude-code
+    Enabled: true
+    Safe: false
+Performance/IoReadlines:
+    Description: Use `IO.each_line` (`IO#each_line`) instead of `IO.readlines` (`IO#readlines`).
+    Reference: https://docs.gitlab.com/ee/development/performance.html#reading-from-files-and-other-data-sources
+    Enabled: false
+Performance/OpenStruct:
+    Description: Use `Struct` instead of `OpenStruct`.
+    Enabled: false
+    Safe: false
+Performance/RangeInclude:
+    Description: Use `Range#cover?` instead of `Range#include?` (or `Range#member?`).
+    Reference: https://github.com/JuanitoFatas/fast-ruby#cover-vs-include-code
+    Enabled: true
+    Safe: false
+Performance/RedundantBlockCall:
+    Description: Use `yield` instead of `block.call`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#proccall-and-block-arguments-vs-yieldcode
+    Enabled: true
+Performance/RedundantMatch:
+    Description: Use `=~` instead of `String#match` or `Regexp#match` in a context
+        where the returned `MatchData` is not needed.
+    Enabled: true
+Performance/RedundantMerge:
+    Description: Use Hash#[]=, rather than Hash#merge! with a single key-value pair.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#hashmerge-vs-hash-code
+    Enabled: true
+    MaxKeyValuePairs: 2
+Performance/RedundantSortBlock:
+    Description: Use `sort` instead of `sort { |a, b| a <=> b }`.
+    Enabled: true
+Performance/RedundantStringChars:
+    Description: Checks for redundant `String#chars`.
+    Enabled: true
+Performance/RegexpMatch:
+    Description: Use `match?` instead of `Regexp#match`, `String#match`, `Symbol#match`,
+        `Regexp#===`, or `=~` when `MatchData` is not used.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#regexp-vs-stringmatch-vs-string-vs-stringmatch-code-
+    Enabled: true
+Performance/ReverseEach:
+    Description: Use `reverse_each` instead of `reverse.each`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code
+    Enabled: true
+Performance/ReverseFirst:
+    Description: Use `last(n).reverse` instead of `reverse.first(n)`.
+    Enabled: true
+Performance/Size:
+    Description: Use `size` instead of `count` for counting the number of elements
+        in `Array` and `Hash`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#arraylength-vs-arraysize-vs-arraycount-code
+    Enabled: true
+Performance/SortReverse:
+    Description: Use `sort.reverse` instead of `sort { |a, b| b <=> a }`.
+    Enabled: true
+Performance/Squeeze:
+    Description: Use `squeeze('a')` instead of `gsub(/a+/, 'a')`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#remove-extra-spaces-or-other-contiguous-characters-code
+    Enabled: true
+Performance/StartWith:
+    Description: Use `start_with?` instead of a regex match anchored to the beginning
+        of a string.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end
+    SafeAutoCorrect: false
+    AutoCorrect: false
+    Enabled: true
+    SafeMultiline: true
+Performance/StringInclude:
+    Description: Use `String#include?` instead of a regex match with literal-only
+        pattern.
+    Enabled: true
+    AutoCorrect: false
+    SafeAutoCorrect: false
+Performance/StringReplacement:
+    Description: Use `tr` instead of `gsub` when you are replacing the same number
+        of characters. Use `delete` instead of `gsub` when you are deleting characters.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#stringgsub-vs-stringtr-code
+    Enabled: true
+Performance/TimesMap:
+    Description: Checks for .times.map calls.
+    AutoCorrect: false
+    Enabled: true
+    SafeAutoCorrect: false
+Performance/UnfreezeString:
+    Description: Use unary plus to get an unfrozen string literal.
+    Enabled: true
+Performance/UriDefaultParser:
+    Description: Use `URI::DEFAULT_PARSER` instead of `URI::Parser.new`.
+    Enabled: true
+RSpec/AlignLeftLetBrace:
+    Description: Checks that left braces for adjacent single line lets are aligned.
+    Enabled: false
+RSpec/AlignRightLetBrace:
+    Description: Checks that right braces for adjacent single line lets are aligned.
+    Enabled: false
+RSpec/AnyInstance:
+    Description: Check that instances are not being stubbed globally.
+    Enabled: true
+RSpec/AroundBlock:
+    Description: Checks that around blocks actually run the test.
+    Enabled: true
+RSpec/Be:
+    Description: Check for expectations where `be` is used without argument.
+    Enabled: true
+RSpec/BeEql:
+    Description: Check for expectations where `be(...)` can replace `eql(...)`.
+    Enabled: true
+RSpec/BeforeAfterAll:
+    Description: Check that before/after(:all) isn't being used.
+    Enabled: true
+    Exclude:
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - spec/support/**/*.rb
+RSpec/ContextMethod:
+    Description: "`context` should not be used for specifying methods."
+    Enabled: true
+RSpec/ContextWording:
+    Description: Checks that `context` docstring starts with an allowed prefix.
+    Enabled: true
+    Prefixes:
+    - when
+    - with
+    - without
+RSpec/DescribeClass:
+    Description: Check that the first argument to the top-level describe is a constant.
+    Enabled: true
+RSpec/DescribeMethod:
+    Description: Checks that the second argument to `describe` specifies a method.
+    Enabled: true
+RSpec/DescribeSymbol:
+    Description: Avoid describing symbols.
+    Enabled: true
+RSpec/DescribedClass:
+    Description: Checks that tests use `described_class`.
+    Enabled: true
+    SkipBlocks: false
+    EnforcedStyle: described_class
+    SafeAutoCorrect: false
+RSpec/DescribedClassModuleWrapping:
+    Description: Avoid opening modules and defining specs within them.
+    Enabled: false
+RSpec/Dialect:
+    Description: This cop enforces custom RSpec dialects.
+    Enabled: false
+    PreferredMethods: {}
+RSpec/EmptyExampleGroup:
+    Description: Checks if an example group does not include any tests.
+    Enabled: true
+    CustomIncludeMethods: []
+RSpec/EmptyHook:
+    Description: Checks for empty before and after hooks.
+    Enabled: true
+RSpec/EmptyLineAfterExample:
+    Description: Checks if there is an empty line after example blocks.
+    Enabled: true
+    AllowConsecutiveOneLiners: true
+RSpec/EmptyLineAfterExampleGroup:
+    Description: Checks if there is an empty line after example group blocks.
+    Enabled: true
+RSpec/EmptyLineAfterFinalLet:
+    Description: Checks if there is an empty line after the last let block.
+    Enabled: true
+RSpec/EmptyLineAfterHook:
+    Description: Checks if there is an empty line after hook blocks.
+    Enabled: true
+RSpec/EmptyLineAfterSubject:
+    Description: Checks if there is an empty line after subject block.
+    Enabled: true
+RSpec/ExampleLength:
+    Description: Checks for long examples.
+    Enabled: true
+    Max: 5
+RSpec/ExampleWithoutDescription:
+    Description: Checks for examples without a description.
+    Enabled: true
+    EnforcedStyle: always_allow
+RSpec/ExampleWording:
+    Description: Checks for common mistakes in example descriptions.
+    Enabled: true
+    CustomTransform:
+        be: is
+        BE: IS
+        have: has
+        HAVE: HAS
+    IgnoredWords: []
+RSpec/ExpectActual:
+    Description: Checks for `expect(...)` calls containing literal values.
+    Enabled: true
+    Exclude:
+    - spec/routing/**/*
+RSpec/ExpectChange:
+    Description: Checks for consistent style of change matcher.
+    Enabled: true
+    EnforcedStyle: method_call
+RSpec/ExpectInHook:
+    Description: Do not use `expect` in hooks such as `before`.
+    Enabled: true
+RSpec/ExpectOutput:
+    Description: Checks for opportunities to use `expect { ... }.to output`.
+    Enabled: true
+RSpec/FilePath:
+    Description: Checks that spec file paths are consistent and well-formed.
+    Enabled: true
+    CustomTransform:
+        RuboCop: rubocop
+        RSpec: rspec
+    IgnoreMethods: false
+    SpecSuffixOnly: false
+RSpec/Focus:
+    Description: Checks if examples are focused.
+    Enabled: true
+RSpec/HookArgument:
+    Description: Checks the arguments passed to `before`, `around`, and `after`.
+    Enabled: true
+    EnforcedStyle: implicit
+RSpec/HooksBeforeExamples:
+    Description: Checks for before/around/after hooks that come after an example.
+    Enabled: true
+RSpec/ImplicitBlockExpectation:
+    Description: Check that implicit block expectation syntax is not used.
+    Enabled: true
+RSpec/ImplicitExpect:
+    Description: Check that a consistent implicit expectation style is used.
+    Enabled: true
+    EnforcedStyle: is_expected
+RSpec/ImplicitSubject:
+    Description: Checks for usage of implicit subject (`is_expected` / `should`).
+    Enabled: true
+    EnforcedStyle: single_line_only
+RSpec/InstanceSpy:
+    Description: Checks for `instance_double` used with `have_received`.
+    Enabled: true
+RSpec/InstanceVariable:
+    Description: Checks for instance variable usage in specs.
+    Enabled: true
+    AssignmentOnly: false
+RSpec/InvalidPredicateMatcher:
+    Description: Checks invalid usage for predicate matcher.
+    Enabled: true
+RSpec/ItBehavesLike:
+    Description: Checks that only one `it_behaves_like` style is used.
+    Enabled: true
+    EnforcedStyle: it_behaves_like
+RSpec/IteratedExpectation:
+    Description: Check that `all` matcher is used instead of iterating over an array.
+    Enabled: true
+RSpec/LeadingSubject:
+    Description: Enforce that subject is the first definition in the test.
+    Enabled: true
+RSpec/LeakyConstantDeclaration:
+    Description: Checks that no class, module, or constant is declared.
+    Enabled: true
+RSpec/LetBeforeExamples:
+    Description: Checks for `let` definitions that come after an example.
+    Enabled: true
+RSpec/LetSetup:
+    Description: Checks unreferenced `let!` calls being used for test setup.
+    Enabled: true
+RSpec/MessageChain:
+    Description: Check that chains of messages are not being stubbed.
+    Enabled: true
+RSpec/MessageExpectation:
+    Description: Checks for consistent message expectation style.
+    Enabled: false
+    EnforcedStyle: allow
+RSpec/MessageSpies:
+    Description: Checks that message expectations are set using spies.
+    Enabled: true
+    EnforcedStyle: have_received
+RSpec/MissingExampleGroupArgument:
+    Description: Checks that the first argument to an example group is not empty.
+    Enabled: true
+RSpec/MultipleDescribes:
+    Description: Checks for multiple top-level example groups.
+    Enabled: true
+RSpec/MultipleExpectations:
+    Description: Checks if examples contain too many `expect` calls.
+    Enabled: true
+    Max: 5
+RSpec/MultipleMemoizedHelpers:
+    Description: Checks if example groups contain too many `let` and `subject` calls.
+    Enabled: true
+    AllowSubject: true
+    Max: 5
+RSpec/MultipleSubjects:
+    Description: Checks if an example group defines `subject` multiple times.
+    Enabled: true
+RSpec/NamedSubject:
+    Description: Checks for explicitly referenced test subjects.
+    Enabled: true
+    IgnoreSharedExamples: true
+RSpec/NestedGroups:
+    Description: Checks for nested example groups.
+    Enabled: true
+    Max: 6
+RSpec/NotToNot:
+    Description: Checks for consistent method usage for negating expectations.
+    Enabled: true
+    EnforcedStyle: not_to
+RSpec/OverwritingSetup:
+    Description: Checks if there is a let/subject that overwrites an existing one.
+    Enabled: true
+RSpec/Pending:
+    Description: Checks for any pending or skipped examples.
+    Enabled: true
+RSpec/PredicateMatcher:
+    Description: Prefer using predicate matcher over using predicate method directly.
+    Enabled: true
+    Strict: true
+    EnforcedStyle: inflected
+    AllowedExplicitMatchers: []
+    SafeAutoCorrect: false
+RSpec/ReceiveCounts:
+    Description: Check for `once` and `twice` receive counts matchers usage.
+    Enabled: true
+RSpec/ReceiveNever:
+    Description: Prefer `not_to receive(...)` over `receive(...).never`.
+    Enabled: true
+RSpec/RepeatedDescription:
+    Description: Check for repeated description strings in example groups.
+    Enabled: true
+RSpec/RepeatedExample:
+    Description: Check for repeated examples within example groups.
+    Enabled: true
+RSpec/RepeatedExampleGroupBody:
+    Description: Check for repeated describe and context block body.
+    Enabled: true
+RSpec/RepeatedExampleGroupDescription:
+    Description: Check for repeated example group descriptions.
+    Enabled: true
+RSpec/ReturnFromStub:
+    Description: Checks for consistent style of stub's return setting.
+    Enabled: true
+    EnforcedStyle: and_return
+RSpec/ScatteredLet:
+    Description: Checks for let scattered across the example group.
+    Enabled: true
+RSpec/ScatteredSetup:
+    Description: Checks for setup scattered across multiple hooks in an example group.
+    Enabled: true
+RSpec/SharedContext:
+    Description: Checks for proper shared_context and shared_examples usage.
+    Enabled: true
+RSpec/SharedExamples:
+    Description: Enforces use of string to titleize shared examples.
+    Enabled: true
+RSpec/SingleArgumentMessageChain:
+    Description: Checks that chains of messages contain more than one element.
+    Enabled: true
+RSpec/SubjectStub:
+    Description: Checks for stubbed test subjects.
+    Enabled: true
+RSpec/UnspecifiedException:
+    Description: Checks for a specified error in checking raised errors.
+    Enabled: true
+RSpec/VariableDefinition:
+    Description: Checks that memoized helpers names are symbols or strings.
+    Enabled: true
+    EnforcedStyle: symbols
+RSpec/VariableName:
+    Description: Checks that memoized helper names use the configured style.
+    Enabled: true
+    EnforcedStyle: snake_case
+    IgnoredPatterns: []
+RSpec/VerifiedDoubles:
+    Description: Prefer using verifying doubles over normal doubles.
+    Enabled: true
+    IgnoreNameless: true
+    IgnoreSymbolicNames: false
+RSpec/VoidExpect:
+    Description: This cop checks void `expect()`.
+    Enabled: true
+RSpec/Yield:
+    Description: This cop checks for calling a block within a stub.
+    Enabled: true
+Rails/ActionFilter:
+    Description: Enforces consistent use of action filter methods.
+    Enabled: true
+    EnforcedStyle: action
+    Include:
+    - app/controllers/**/*.rb
+Rails/ActiveRecordAliases:
+    Description: 'Avoid Active Record aliases: Use `update` instead of `update_attributes`.
+        Use `update!` instead of `update_attributes!`.'
+    Enabled: true
+Rails/ActiveRecordCallbacksOrder:
+    Description: Order callback declarations in the order in which they will be executed.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/ActiveRecordOverride:
+    Description: Check for overriding Active Record methods instead of using callbacks.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/ActiveSupportAliases:
+    Description: 'Avoid ActiveSupport aliases of standard ruby methods: `String#starts_with?`,
+        `String#ends_with?`, `Array#append`, `Array#prepend`.'
+    Enabled: true
+Rails/ApplicationController:
+    Description: Check that controllers subclass ApplicationController.
+    Enabled: true
+Rails/ApplicationJob:
+    Description: Check that jobs subclass ApplicationJob.
+    Enabled: true
+Rails/ApplicationMailer:
+    Description: Check that mailers subclass ApplicationMailer.
+    Enabled: true
+Rails/ApplicationRecord:
+    Description: Check that models subclass ApplicationRecord.
+    Enabled: true
+Rails/AssertNot:
+    Description: Use `assert_not` instead of `assert !`.
+    Enabled: true
+    Include:
+    - "**/test/**/*"
+Rails/BelongsTo:
+    Description: 'Use `optional: true` instead of `required: false` for `belongs_to`
+        relations.'
+    Enabled: true
+Rails/Blank:
+    Description: Enforces use of `blank?`.
+    Enabled: true
+    NilOrEmpty: true
+    NotPresent: true
+    UnlessPresent: true
+Rails/BulkChangeTable:
+    Description: Check whether alter queries are combinable.
+    Enabled: true
+    Database: 
+    SupportedDatabases:
+    - mysql
+    - postgresql
+    Include:
+    - db/migrate/*.rb
+Rails/ContentTag:
+    Description: Use `tag` instead of `content_tag`.
+    Reference:
+    - https://github.com/rails/rails/issues/25195
+    - https://api.rubyonrails.org/classes/ActionView/Helpers/TagHelper.html#method-i-content_tag
+    Enabled: true
+Rails/CreateTableWithTimestamps:
+    Description: Checks the migration for which timestamps are not included when creating
+        a new table.
+    Enabled: true
+    Include:
+    - db/migrate/*.rb
+Rails/Date:
+    Description: Checks the correct usage of date aware methods, such as Date.today,
+        Date.current etc.
+    Enabled: true
+    EnforcedStyle: flexible
+Rails/DefaultScope:
+    Description: Avoid use of `default_scope`.
+    Enabled: true
+Rails/Delegate:
+    Description: Prefer delegate method for delegations.
+    Enabled: true
+    EnforceForPrefixed: true
+Rails/DelegateAllowBlank:
+    Description: Do not use allow_blank as an option to delegate.
+    Enabled: true
+Rails/DynamicFindBy:
+    Description: Use `find_by` instead of dynamic `find_by_*`.
+    Enabled: true
+    Whitelist:
+    - find_by_sql
+    AllowedMethods:
+    - find_by_sql
+    AllowedReceivers:
+    - Gem::Specification
+Rails/EnumHash:
+    Description: Prefer hash syntax over array syntax when defining enums.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/EnumUniqueness:
+    Description: Avoid duplicate integers in hash-syntax `enum` declaration.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/EnvironmentComparison:
+    Description: Favor `Rails.env.production?` over `Rails.env == 'production'`.
+    Enabled: true
+Rails/Exit:
+    Description: Favor `fail`, `break`, `return`, etc. over `exit` in application
+        or library code outside of Rake files to avoid exits during unit testing or
+        running in production.
+    Enabled: true
+    Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - lib/**/*.rb
+    Exclude:
+    - lib/**/*.rake
+Rails/FilePath:
+    Description: Use `Rails.root.join` for file path joining.
+    Enabled: true
+    EnforcedStyle: slashes
+Rails/FindBy:
+    Description: Prefer find_by over where.first.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/FindById:
+    Description: Favor the use of `find` over `where.take!`, `find_by!`, and `find_by_id!`
+        when you need to retrieve a single record by primary key when you expect it
+        to be found.
+    Enabled: true
+Rails/FindEach:
+    Description: Prefer all.find_each over all.find.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+    Description: Prefer has_many :through to has_and_belongs_to_many.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/HasManyOrHasOneDependent:
+    Description: Define the dependent option to the has_many and has_one associations.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/HelperInstanceVariable:
+    Description: Do not use instance variables in helpers.
+    Enabled: true
+    Include:
+    - app/helpers/**/*.rb
+Rails/HttpPositionalArguments:
+    Description: Use keyword arguments instead of positional arguments in http method
+        calls.
+    Enabled: true
+    Include:
+    - spec/**/*
+    - test/**/*
+Rails/HttpStatus:
+    Description: Enforces use of symbolic or numeric value to describe HTTP status.
+    Enabled: true
+    EnforcedStyle: symbolic
+Rails/IgnoredSkipActionFilterOption:
+    Description: Checks that `if` and `only` (or `except`) are not used together as
+        options of `skip_*` action filter.
+    Reference: https://api.rubyonrails.org/classes/AbstractController/Callbacks/ClassMethods.html#method-i-_normalize_callback_options
+    Enabled: true
+    Include:
+    - app/controllers/**/*.rb
+Rails/IndexBy:
+    Description: Prefer `index_by` over `each_with_object`, `to_h`, or `map`.
+    Enabled: true
+Rails/IndexWith:
+    Description: Prefer `index_with` over `each_with_object`, `to_h`, or `map`.
+    Enabled: true
+Rails/Inquiry:
+    Description: Prefer Ruby's comparison operators over Active Support's `Array#inquiry`
+        and `String#inquiry`.
+    Enabled: true
+Rails/InverseOf:
+    Description: Checks for associations where the inverse cannot be determined automatically.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/LexicallyScopedActionFilter:
+    Description: Checks that methods specified in the filter's `only` or `except`
+        options are explicitly defined in the controller.
+    Enabled: true
+    Safe: false
+    Include:
+    - app/controllers/**/*.rb
+Rails/LinkToBlank:
+    Description: 'Checks that `link_to` with a `target: "_blank"` have a `rel: "noopener"`
+        option passed to them.'
+    Reference:
+    - https://mathiasbynens.github.io/rel-noopener/
+    - https://html.spec.whatwg.org/multipage/links.html#link-type-noopener
+    - https://html.spec.whatwg.org/multipage/links.html#link-type-noreferrer
+    Enabled: true
+Rails/MailerName:
+    Description: Mailer should end with `Mailer` suffix.
+    Enabled: true
+    Include:
+    - app/mailers/**/*.rb
+Rails/MatchRoute:
+    Description: Don't use `match` to define any routes unless there is a need to
+        map multiple request types among [:get, :post, :patch, :put, :delete] to a
+        single action using the `:via` option.
+    Enabled: true
+    Include:
+    - config/routes.rb
+    - config/routes/**/*.rb
+Rails/NegateInclude:
+    Description: Prefer `collection.exclude?(obj)` over `!collection.include?(obj)`.
+    Enabled: true
+Rails/NotNullColumn:
+    Description: Do not add a NOT NULL column without a default value.
+    Enabled: true
+    Include:
+    - db/migrate/*.rb
+Rails/Output:
+    Description: Checks for calls to puts, print, etc.
+    Enabled: true
+    Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - db/**/*.rb
+    - lib/**/*.rb
+Rails/OutputSafety:
+    Description: The use of `html_safe` or `raw` may be a security risk.
+    Enabled: true
+Rails/Pick:
+    Description: Prefer `pick` over `pluck(...).first`.
+    Enabled: true
+    Safe: false
+Rails/Pluck:
+    Description: Prefer `pluck` over `map { ... }`.
+    Enabled: true
+Rails/PluckId:
+    Description: Use `ids` instead of `pluck(:id)` or `pluck(primary_key)`.
+    Enabled: true
+    Safe: false
+Rails/PluckInWhere:
+    Description: Use `select` instead of `pluck` in `where` query methods.
+    Enabled: true
+    Safe: false
+Rails/PluralizationGrammar:
+    Description: Checks for incorrect grammar when using methods like `3.day.ago`.
+    Enabled: true
+Rails/Presence:
+    Description: Checks code that can be written more easily using `Object#presence`
+        defined by Active Support.
+    Enabled: true
+Rails/Present:
+    Description: Enforces use of `present?`.
+    Enabled: true
+    NotNilAndNotEmpty: true
+    NotBlank: true
+    UnlessBlank: true
+Rails/RakeEnvironment:
+    Description: Include `:environment` as a dependency for all Rake tasks.
+    Enabled: true
+    Safe: false
+    Include:
+    - "**/Rakefile"
+    - "**/*.rake"
+    Exclude:
+    - lib/capistrano/tasks/**/*.rake
+Rails/ReadWriteAttribute:
+    Description: Checks for read_attribute(:attr) and write_attribute(:attr, val).
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/RedundantAllowNil:
+    Description: Finds redundant use of `allow_nil` when `allow_blank` is set to certain
+        values in model validations.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/RedundantForeignKey:
+    Description: Checks for associations where the `:foreign_key` option is redundant.
+    Enabled: true
+Rails/RedundantReceiverInWithOptions:
+    Description: Checks for redundant receiver in `with_options`.
+    Enabled: true
+Rails/ReflectionClassName:
+    Description: Use a string for `class_name` option value in the definition of a
+        reflection.
+    Enabled: true
+Rails/RefuteMethods:
+    Description: Use `assert_not` methods instead of `refute` methods.
+    Enabled: true
+    EnforcedStyle: assert_not
+    Include:
+    - "**/test/**/*"
+Rails/RelativeDateConstant:
+    Description: Do not assign relative date to constants.
+    Enabled: true
+    AutoCorrect: false
+Rails/RenderInline:
+    Description: Prefer using a template over inline rendering.
+    Enabled: true
+Rails/RenderPlainText:
+    Description: Prefer `render plain:` over `render text:`.
+    Enabled: true
+    ContentTypeCompatibility: true
+Rails/RequestReferer:
+    Description: Use consistent syntax for request.referer.
+    Enabled: true
+    EnforcedStyle: referer
+Rails/ReversibleMigration:
+    Description: Checks whether the change method of the migration file is reversible.
+    Reference: https://api.rubyonrails.org/classes/ActiveRecord/Migration/CommandRecorder.html
+    Enabled: true
+    Include:
+    - db/migrate/*.rb
+Rails/SafeNavigation:
+    Description: Use Ruby's safe navigation operator (`&.`) instead of `try!`.
+    Enabled: true
+    ConvertTry: false
+Rails/SafeNavigationWithBlank:
+    Description: Avoid `foo&.blank?` in conditionals.
+    Enabled: true
+Rails/SaveBang:
+    Description: Identifies possible cases where Active Record save! or related should
+        be used.
+    Enabled: false
+    AllowImplicitReturn: true
+    AllowedReceivers: []
+Rails/ScopeArgs:
+    Description: Checks the arguments of ActiveRecord scopes.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/ShortI18n:
+    Description: 'Use the short form of the I18n methods: `t` instead of `translate`
+        and `l` instead of `localize`.'
+    Enabled: true
+    EnforcedStyle: conservative
+Rails/SkipsModelValidations:
+    Description: Use methods that skips model validations with caution. See reference
+        for more information.
+    Reference: https://guides.rubyonrails.org/active_record_validations.html#skipping-validations
+    Enabled: true
+    ForbiddenMethods:
+    - decrement!
+    - decrement_counter
+    - increment!
+    - increment_counter
+    - insert
+    - insert!
+    - insert_all
+    - insert_all!
+    - toggle!
+    - touch
+    - touch_all
+    - update_all
+    - update_attribute
+    - update_column
+    - update_columns
+    - update_counters
+    - upsert
+    - upsert_all
+    AllowedMethods: []
+    Exclude:
+    - "**/*_spec.rb"
+Rails/TimeZone:
+    Description: Checks the correct usage of time zone aware methods.
+    Reference: http://danilenko.org/2012/7/6/rails_timezones
+    Enabled: true
+    Safe: false
+    EnforcedStyle: flexible
+Rails/UniqBeforePluck:
+    Description: Prefer the use of uniq or distinct before pluck.
+    Enabled: true
+    EnforcedStyle: conservative
+    AutoCorrect: false
+Rails/UniqueValidationWithoutIndex:
+    Description: Uniqueness validation should be with a unique index.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/UnknownEnv:
+    Description: Use correct environment name.
+    Enabled: true
+    Environments:
+    - development
+    - test
+    - production
+Rails/Validation:
+    Description: Use validates :attribute, hash of validations.
+    Enabled: true
+    Include:
+    - app/models/**/*.rb
+Rails/WhereExists:
+    Description: Prefer `exists?(...)` over `where(...).exists?`.
+    Enabled: true
+Rake:
+    Enabled: true
+    Include:
+    - Rakefile
+    - "**/*.rake"
+Rake/ClassDefinitionInTask:
+    Description: Do not define a class or module in rake task, because it will be
+        defined to the top level.
+    Enabled: true
+Rake/Desc:
+    Description: Describe the task with `desc` method.
+    Enabled: true
+Rake/DuplicateNamespace:
+    Description: Do not define namespace with the same name
+    Enabled: true
+Rake/DuplicateTask:
+    Description: Do not define tasks with the same name
+    Enabled: true
+Rake/MethodDefinitionInTask:
+    Description: Do not define a method in rake task, because it will be defined to
+        the top level.
+    Enabled: true
+Security/Eval:
+    Description: The use of eval represents a serious security risk.
+    Enabled: true
+Security/JSONLoad:
+    Description: Prefer usage of `JSON.parse` over `JSON.load` due to potential security
+        issues. See reference for more information.
+    Reference: https://ruby-doc.org/stdlib-2.7.0/libdoc/json/rdoc/JSON.html#method-i-load
+    Enabled: true
+    AutoCorrect: false
+    SafeAutoCorrect: false
+Security/MarshalLoad:
+    Description: Avoid using of `Marshal.load` or `Marshal.restore` due to potential
+        security issues. See reference for more information.
+    Reference: https://ruby-doc.org/core-2.7.0/Marshal.html#module-Marshal-label-Security+considerations
+    Enabled: true
+Security/Open:
+    Description: The use of Kernel#open represents a serious security risk.
+    Enabled: true
+    Safe: false
+Security/YAMLLoad:
+    Description: Prefer usage of `YAML.safe_load` over `YAML.load` due to potential
+        security issues. See reference for more information.
+    Reference: https://ruby-doc.org/stdlib-2.7.0/libdoc/yaml/rdoc/YAML.html#module-YAML-label-Security
+    Enabled: true
+    SafeAutoCorrect: false
+Style/AccessModifierDeclarations:
+    Description: Checks style of how access modifiers are used.
+    Enabled: true
+    EnforcedStyle: group
+    AllowModifiersOnSymbols: true
+Style/AccessorGrouping:
+    Description: Checks for grouping of accessors in `class` and `module` bodies.
+    Enabled: true
+    EnforcedStyle: grouped
+Style/Alias:
+    Description: Use alias instead of alias_method.
+    Enabled: true
+    EnforcedStyle: prefer_alias
+Style/AndOr:
+    EnforcedStyle: conditionals
+    Include:
+    - app/controllers/**/*_controller.rb
+Style/ArrayCoercion:
+    Description: Use Array() instead of explicit Array check or [*var], when dealing
+        with a variable you want to treat as an Array, but you're not certain it's
+        an array.
+    Safe: false
+    Enabled: true
+Style/ArrayJoin:
+    Description: Use Array#join instead of Array#*.
+    Enabled: true
+Style/AsciiComments:
+    Description: Use only ascii symbols in comments.
+    Enabled: true
+    AllowedChars: []
+Style/Attr:
+    Description: Checks for uses of Module#attr.
+    Enabled: true
+Style/AutoResourceCleanup:
+    Description: Suggests the usage of an auto resource cleanup version of a method
+        (if available).
+    Enabled: true
+Style/BarePercentLiterals:
+    Description: Checks if usage of %() or %Q() matches configuration.
+    Enabled: true
+    EnforcedStyle: bare_percent
+Style/BeginBlock:
+    Description: Avoid the use of BEGIN blocks.
+    Enabled: true
+Style/BisectedAttrAccessor:
+    Description: Checks for places where `attr_reader` and `attr_writer` for the same
+        method can be combined into single `attr_accessor`.
+    Enabled: true
+Style/BlockComments:
+    Description: Do not use block comments.
+    Enabled: true
+Style/BlockDelimiters:
+    Description: Avoid using {...} for multi-line blocks (multiline chaining is always
+        ugly). Prefer {...} over do...end for single-line blocks.
+    Enabled: true
+    EnforcedStyle: line_count_based
+    ProceduralMethods:
+    - benchmark
+    - bm
+    - bmbm
+    - create
+    - each_with_object
+    - measure
+    - new
+    - realtime
+    - tap
+    - with_object
+    FunctionalMethods:
+    - let
+    - let!
+    - subject
+    - watch
+    IgnoredMethods:
+    - lambda
+    - proc
+    - it
+    AllowBracesOnProceduralOneLiners: false
+    BracesRequiredMethods: []
+Style/CaseEquality:
+    Description: Avoid explicit use of the case equality operator(===).
+    Enabled: true
+    AllowOnConstant: false
+Style/CaseLikeIf:
+    Description: This cop identifies places where `if-elsif` constructions can be
+        replaced with `case-when`.
+    Enabled: true
+    Safe: false
+Style/CharacterLiteral:
+    Description: Checks for uses of character literals.
+    Enabled: true
+Style/ClassAndModuleChildren:
+    Description: Checks style of children classes and modules.
+    SafeAutoCorrect: false
+    Enabled: true
+    EnforcedStyle: nested
+Style/ClassCheck:
+    Description: Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.
+    Enabled: true
+    EnforcedStyle: is_a?
+Style/ClassMethods:
+    Description: Use self when defining module/class methods.
+    Enabled: true
+Style/ClassMethodsDefinitions:
+    Description: Enforces using `def self.method_name` or `class << self` to define
+        class methods.
+    Enabled: true
+    EnforcedStyle: def_self
+Style/ClassVars:
+    Description: Avoid the use of class variables.
+    Enabled: true
+Style/CollectionMethods:
+    Description: Preferred collection methods.
+    Enabled: true
+    Safe: false
+    PreferredMethods:
+        collect: map
+        collect!: map!
+        inject: reduce
+        detect: find
+        find_all: select
+Style/ColonMethodCall:
+    Description: 'Do not use :: for method call.'
+    Enabled: true
+Style/ColonMethodDefinition:
+    Description: 'Do not use :: for defining class methods.'
+    Enabled: true
+Style/CombinableLoops:
+    Description: Checks for places where multiple consecutive loops over the same
+        data can be combined into a single loop.
+    Enabled: true
+    Safe: false
+Style/CommandLiteral:
+    Description: Use `` or %x around command literals.
+    Enabled: true
+    EnforcedStyle: backticks
+    AllowInnerBackticks: false
+Style/CommentAnnotation:
+    Description: Checks formatting of special comments (TODO, FIXME, OPTIMIZE, HACK,
+        REVIEW).
+    Enabled: true
+    Keywords:
+    - TODO
+    - FIXME
+    - OPTIMIZE
+    - HACK
+    - REVIEW
+Style/CommentedKeyword:
+    Description: Do not place comments on the same line as certain keywords.
+    Enabled: true
+Style/ConditionalAssignment:
+    Description: Use the return value of `if` and `case` statements for assignment
+        to a variable and variable comparison instead of assigning that variable inside
+        of each branch.
+    Enabled: true
+    EnforcedStyle: assign_to_condition
+    SingleLineConditionsOnly: true
+    IncludeTernaryExpressions: true
+Style/ConstantVisibility:
+    Description: Check that class- and module constants have visibility declarations.
+    Enabled: true
+Style/Copyright:
+    Description: Include a copyright notice in each file before any code.
+    Enabled: false
+    Notice: "^Copyright (\\(c\\) )?2[0-9]{3} .+"
+    AutocorrectNotice: ''
+Style/DateTime:
+    Description: Use Time over DateTime.
+    Enabled: true
+    AllowCoercion: false
+Style/DefWithParentheses:
+    Description: Use def with parentheses when there are arguments.
+    Enabled: true
+Style/Dir:
+    Description: Use the `__dir__` method to retrieve the canonicalized absolute path
+        to the current file.
+    Enabled: true
+Style/DisableCopsWithinSourceCodeDirective:
+    Description: Forbids disabling/enabling cops within source code.
+    Enabled: false
+Style/Documentation:
+    Description: Document classes and non-namespace modules.
+    Enabled: false
+    Exclude:
+    - spec/**/*
+    - test/**/*
+Style/DocumentationMethod:
+    Description: Checks for missing documentation comment for public methods.
+    Enabled: false
+    Exclude:
+    - spec/**/*
+    - test/**/*
+    RequireForNonPublicMethods: false
+Style/DoubleCopDisableDirective:
+    Description: Checks for double rubocop:disable comments on a single line.
+    Enabled: true
+Style/DoubleNegation:
+    Description: Checks for uses of double negation (!!).
+    Enabled: true
+    EnforcedStyle: allowed_in_returns
+    SafeAutoCorrect: false
+Style/EachForSimpleLoop:
+    Description: Use `Integer#times` for a simple loop which iterates a fixed number
+        of times.
+    Enabled: true
+Style/EachWithObject:
+    Description: Prefer `each_with_object` over `inject` or `reduce`.
+    Enabled: true
+Style/EmptyBlockParameter:
+    Description: Omit pipes for empty block parameters.
+    Enabled: true
+Style/EmptyCaseCondition:
+    Description: Avoid empty condition in case statements.
+    Enabled: true
+Style/EmptyElse:
+    Description: Avoid empty else-clauses.
+    Enabled: true
+    EnforcedStyle: both
+Style/EmptyLambdaParameter:
+    Description: Omit parens for empty lambda parameters.
+    Enabled: true
+Style/EmptyLiteral:
+    Description: Prefer literals to Array.new/Hash.new/String.new.
+    Enabled: true
+Style/EmptyMethod:
+    Description: Checks the formatting of empty method definitions.
+    Enabled: true
+    EnforcedStyle: compact
+Style/Encoding:
+    Description: Use UTF-8 as the source file encoding.
+    Enabled: true
+Style/EndBlock:
+    Description: Avoid the use of END blocks.
+    Enabled: true
+Style/EvalWithLocation:
+    Description: Pass `__FILE__` and `__LINE__` to `eval` method, as they are used
+        by backtraces.
+    Enabled: true
+Style/EvenOdd:
+    Description: Favor the use of `Integer#even?` && `Integer#odd?`.
+    Enabled: true
+Style/ExpandPathArguments:
+    Description: Use `expand_path(__dir__)` instead of `expand_path('..', __FILE__)`.
+    Enabled: true
+Style/ExplicitBlockArgument:
+    Description: Consider using explicit block argument to avoid writing block literal
+        that just passes its arguments to another block.
+    Enabled: true
+    Safe: false
+Style/ExponentialNotation:
+    Description: When using exponential notation, favor a mantissa between 1 (inclusive)
+        and 10 (exclusive).
+    Enabled: true
+    EnforcedStyle: scientific
+Style/FloatDivision:
+    Description: For performing float division, coerce one side only.
+    Reference: https://github.com/rubocop-hq/ruby-style-guide/issues/628
+    Enabled: true
+    EnforcedStyle: single_coerce
+Style/For:
+    Description: Checks use of for or each in multiline loops.
+    Enabled: true
+    EnforcedStyle: each
+Style/FormatString:
+    Description: Enforce the use of Kernel#sprintf, Kernel#format or String#%.
+    Enabled: true
+    EnforcedStyle: format
+Style/FormatStringToken:
+    Description: Use a consistent style for format string tokens.
+    Enabled: true
+    EnforcedStyle: annotated
+Style/FrozenStringLiteralComment:
+    Description: Add the frozen_string_literal comment to the top of files to help
+        transition to frozen string literals by default.
+    Enabled: true
+    EnforcedStyle: always
+    SafeAutoCorrect: true
+Style/GlobalStdStream:
+    Description: Enforces the use of `$stdout/$stderr/$stdin` instead of `STDOUT/STDERR/STDIN`.
+    Enabled: true
+Style/GlobalVars:
+    Description: Do not introduce global variables.
+    Reference: https://www.zenspider.com/ruby/quickref.html
+    Enabled: true
+    AllowedVariables: []
+Style/GuardClause:
+    Description: Check for conditionals that can be replaced with guard clauses.
+    Enabled: true
+    MinBodyLength: 1
+Style/HashAsLastArrayItem:
+    Description: Checks for presence or absence of braces around hash literal as a
+        last array item depending on configuration.
+    Enabled: true
+    EnforcedStyle: braces
+Style/HashEachMethods:
+    Description: Use Hash#each_key and Hash#each_value.
+    Enabled: true
+    Safe: false
+Style/HashLikeCase:
+    Description: Checks for places where `case-when` represents a simple 1:1 mapping
+        and can be replaced with a hash lookup.
+    Enabled: true
+    MinBranchesCount: 3
+Style/HashSyntax:
+    Description: 'Prefer Ruby 1.9 hash syntax { a: 1, b: 2 } over 1.8 syntax { :a
+        => 1, :b => 2 }.'
+    Enabled: true
+    EnforcedStyle: ruby19
+    UseHashRocketsWithSymbolValues: false
+    PreferHashRocketsForNonAlnumEndingSymbols: false
+Style/HashTransformKeys:
+    Description: Prefer `transform_keys` over `each_with_object`, `map`, or `to_h`.
+    Enabled: true
+    Safe: false
+Style/HashTransformValues:
+    Description: Prefer `transform_values` over `each_with_object`, `map`, or `to_h`.
+    Enabled: true
+    Safe: false
+Style/IdenticalConditionalBranches:
+    Description: Checks that conditional statements do not have an identical line
+        at the end of each branch, which can validly be moved out of the conditional.
+    Enabled: true
+Style/IfInsideElse:
+    Description: Finds if nodes inside else, which can be converted to elsif.
+    Enabled: true
+    AllowIfModifier: false
+Style/IfUnlessModifier:
+    Description: Favor modifier if/unless usage when you have a single-line body.
+    Enabled: true
+Style/IfUnlessModifierOfIfUnless:
+    Description: Avoid modifier if/unless usage on conditionals.
+    Enabled: true
+Style/IfWithSemicolon:
+    Description: Do not use if x; .... Use the ternary operator instead.
+    Enabled: true
+Style/ImplicitRuntimeError:
+    Description: Use `raise` or `fail` with an explicit exception class and message,
+        rather than just a message.
+    Enabled: true
+Style/InfiniteLoop:
+    Description: Use Kernel#loop for infinite loops.
+    Enabled: true
+    SafeAutoCorrect: true
+Style/InlineComment:
+    Description: Avoid trailing inline comments.
+    Enabled: true
+Style/InverseMethods:
+    Description: Use the inverse method instead of `!.method` if an inverse method
+        is defined.
+    Enabled: true
+    Safe: false
+    InverseMethods:
+        :any?: :none?
+        :even?: :odd?
+        :==: :!=
+        :=~: :!~
+        :<: :>=
+        :>: :<=
+    InverseBlocks:
+        :select: :reject
+        :select!: :reject!
+Style/IpAddresses:
+    Description: Don't include literal IP addresses in code.
+    Enabled: true
+    AllowedAddresses:
+    - "::"
+Style/KeywordParametersOrder:
+    Description: Enforces that optional keyword parameters are placed at the end of
+        the parameters list.
+    Enabled: true
+Style/Lambda:
+    Description: Use the new lambda literal syntax for single-line blocks.
+    Enabled: true
+    EnforcedStyle: line_count_dependent
+Style/LambdaCall:
+    Description: Use lambda.call(...) instead of lambda.(...).
+    Enabled: true
+    EnforcedStyle: call
+Style/LineEndConcatenation:
+    Description: Use \ instead of + or << to concatenate two string literals at line
+        end.
+    Enabled: true
+    SafeAutoCorrect: false
+Style/MethodCallWithArgsParentheses:
+    Description: Use parentheses for method calls with arguments.
+    Enabled: true
+    IgnoreMacros: true
+    IgnoredMethods:
+    - describe
+    - context
+    - it
+    - to
+    - not_to
+    - require
+    - require_relative
+    - shared_examples
+    - shared_context
+    - define
+    - yield
+    - expect_with
+    - mock_with
+    IgnoredPatterns: []
+    IncludedMacros: []
+    AllowParenthesesInMultilineCall: false
+    AllowParenthesesInChaining: false
+    AllowParenthesesInCamelCaseMethod: false
+    EnforcedStyle: require_parentheses
+    Exclude:
+    - Gemfile
+Style/MethodCallWithoutArgsParentheses:
+    Description: Do not use parentheses for method calls with no arguments.
+    Enabled: true
+    IgnoredMethods: []
+Style/MethodCalledOnDoEndBlock:
+    Description: Avoid chaining a method call on a do...end block.
+    Enabled: true
+Style/MethodDefParentheses:
+    Description: Checks if the method definitions have or don't have parentheses.
+    Enabled: true
+    EnforcedStyle: require_parentheses
+Style/MinMax:
+    Description: Use `Enumerable#minmax` instead of `Enumerable#min` and `Enumerable#max`
+        in conjunction.
+    Enabled: true
+Style/MissingElse:
+    Description: Require if/case expressions to have an else branches. If enabled,
+        it is recommended that Style/UnlessElse and Style/EmptyElse be enabled. This
+        will conflict with Style/EmptyElse if Style/EmptyElse is configured to style
+        "both".
+    Enabled: false
+    EnforcedStyle: both
+Style/MissingRespondToMissing:
+    Description: Checks if `method_missing` is implemented without implementing `respond_to_missing`.
+    Enabled: true
+Style/MixinGrouping:
+    Description: Checks for grouping of mixins in `class` and `module` bodies.
+    Enabled: true
+    EnforcedStyle: separated
+Style/MixinUsage:
+    Description: Checks that `include`, `extend` and `prepend` exists at the top level.
+    Enabled: true
+Style/ModuleFunction:
+    Description: Checks for usage of `extend self` in modules.
+    Enabled: true
+    EnforcedStyle: module_function
+    Autocorrect: false
+    SafeAutoCorrect: false
+Style/MultilineBlockChain:
+    Description: Avoid multi-line chains of blocks.
+    Enabled: true
+Style/MultilineIfModifier:
+    Description: Only use if/unless modifiers on single line statements.
+    Enabled: true
+Style/MultilineIfThen:
+    Description: Do not use then for multi-line if/unless.
+    Enabled: true
+Style/MultilineMemoization:
+    Description: Wrap multiline memoizations in a `begin` and `end` block.
+    Enabled: true
+    EnforcedStyle: keyword
+Style/MultilineMethodSignature:
+    Description: Avoid multi-line method signatures.
+    Enabled: true
+Style/MultilineTernaryOperator:
+    Description: 'Avoid multi-line ?: (the ternary operator); use if/unless instead.'
+    Enabled: true
+Style/MultilineWhenThen:
+    Description: Do not use then for multi-line when statement.
+    Enabled: true
+Style/MultipleComparison:
+    Description: Avoid comparing a variable with multiple items in a conditional,
+        use Array#include? instead.
+    Enabled: true
+Style/MutableConstant:
+    Description: Do not assign mutable objects to constants.
+    Enabled: true
+    EnforcedStyle: literals
+Style/NegatedIf:
+    Description: Favor unless over if for negative conditions (or control flow or).
+    Enabled: true
+    EnforcedStyle: both
+Style/NegatedUnless:
+    Description: Favor if over unless for negative conditions.
+    Enabled: true
+    EnforcedStyle: both
+Style/NegatedWhile:
+    Description: Favor until over while for negative conditions.
+    Enabled: true
+Style/NestedModifier:
+    Description: Avoid using nested modifiers.
+    Enabled: true
+Style/NestedParenthesizedCalls:
+    Description: Parenthesize method calls which are nested inside the argument list
+        of another parenthesized method call.
+    Enabled: true
+    AllowedMethods:
+    - be
+    - be_a
+    - be_an
+    - be_between
+    - be_falsey
+    - be_kind_of
+    - be_instance_of
+    - be_truthy
+    - be_within
+    - eq
+    - eql
+    - end_with
+    - include
+    - match
+    - raise_error
+    - respond_to
+    - start_with
+Style/NestedTernaryOperator:
+    Description: Use one expression per branch in a ternary operator.
+    Enabled: true
+Style/Next:
+    Description: Use `next` to skip iteration instead of a condition at the end.
+    Enabled: true
+    EnforcedStyle: skip_modifier_ifs
+    MinBodyLength: 3
+Style/NilComparison:
+    Description: Prefer x.nil? to x == nil.
+    Enabled: true
+    EnforcedStyle: predicate
+Style/NonNilCheck:
+    Description: Checks for redundant nil checks.
+    Enabled: true
+    IncludeSemanticChanges: false
+Style/Not:
+    Description: Use ! instead of not.
+    Enabled: true
+Style/NumericLiteralPrefix:
+    Description: Use smallcase prefixes for numeric literals.
+    Enabled: true
+    EnforcedOctalStyle: zero_with_o
+    SupportedOctalStyles:
+    - zero_with_o
+    - zero_only
+Style/NumericLiterals:
+    Description: Add underscores to large numeric literals to improve their readability.
+    Enabled: true
+    MinDigits: 5
+    Strict: false
+Style/NumericPredicate:
+    Description: Checks for the use of predicate- or comparison methods for numeric
+        comparisons.
+    Safe: false
+    SafeAutoCorrect: false
+    Enabled: true
+    EnforcedStyle: predicate
+    IgnoredMethods: []
+    Exclude:
+    - spec/**/*
+Style/OneLineConditional:
+    Description: Favor the ternary operator (?:) or multi-line constructs over single-line
+        if/then/else/end constructs.
+    Enabled: true
+    AlwaysCorrectToMultiline: false
+Style/OptionHash:
+    Description: Don't use option hashes when you can use keyword arguments.
+    Enabled: true
+    SuspiciousParamNames:
+    - options
+    - opts
+    - args
+    - params
+    - parameters
+Style/OptionalArguments:
+    Description: Checks for optional arguments that do not appear at the end of the
+        argument list.
+    Enabled: true
+    Safe: false
+Style/OptionalBooleanParameter:
+    Description: Use keyword arguments when defining method with boolean argument.
+    Enabled: true
+    Safe: false
+Style/OrAssignment:
+    Description: Recommend usage of double pipe equals (||=) where applicable.
+    Enabled: true
+Style/ParallelAssignment:
+    Description: Check for simple usages of parallel assignment. It will only warn
+        when the number of variables matches on both sides of the assignment.
+    Enabled: true
+Style/ParenthesesAroundCondition:
+    Description: Don't use parentheses around the condition of an if/unless/while.
+    Enabled: true
+    AllowSafeAssignment: true
+    AllowInMultilineConditions: false
+Style/PercentLiteralDelimiters:
+    Description: Use `%`-literal delimiters consistently.
+    Enabled: true
+    PreferredDelimiters:
+        default: "()"
+        "%i": "[]"
+        "%I": "[]"
+        "%r": "{}"
+        "%w": "[]"
+        "%W": "[]"
+Style/PercentQLiterals:
+    Description: Checks if uses of %Q/%q match the configured preference.
+    Enabled: true
+    EnforcedStyle: lower_case_q
+Style/PerlBackrefs:
+    Description: Avoid Perl-style regex back references.
+    Enabled: true
+Style/PreferredHashMethods:
+    Description: Checks use of `has_key?` and `has_value?` Hash methods.
+    Enabled: true
+    Safe: false
+    EnforcedStyle: short
+Style/Proc:
+    Description: Use proc instead of Proc.new.
+    Enabled: true
+Style/RaiseArgs:
+    Description: Checks the arguments passed to raise/fail.
+    Enabled: true
+    EnforcedStyle: exploded
+Style/RandomWithOffset:
+    Description: Prefer to use ranges when generating random numbers instead of integers
+        with offsets.
+    Enabled: true
+Style/RedundantAssignment:
+    Description: Checks for redundant assignment before returning.
+    Enabled: true
+Style/RedundantBegin:
+    Description: Don't use begin blocks when they are not needed.
+    Enabled: true
+Style/RedundantCapitalW:
+    Description: Checks for %W when interpolation is not needed.
+    Enabled: true
+Style/RedundantCondition:
+    Description: Checks for unnecessary conditional expressions.
+    Enabled: true
+Style/RedundantConditional:
+    Description: Don't return true/false from a conditional.
+    Enabled: true
+Style/RedundantException:
+    Description: Checks for an obsolete RuntimeException argument in raise/fail.
+    Enabled: true
+Style/RedundantFetchBlock:
+    Description: Use `fetch(key, value)` instead of `fetch(key) { value }` when value
+        has Numeric, Rational, Complex, Symbol or String type, `false`, `true`, `nil`
+        or is a constant.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#hashfetch-with-argument-vs-hashfetch--block-code
+    Enabled: true
+    Safe: false
+    SafeForConstants: false
+Style/RedundantFileExtensionInRequire:
+    Description: Checks for the presence of superfluous `.rb` extension in the filename
+        provided to `require` and `require_relative`.
+    Enabled: true
+Style/RedundantFreeze:
+    Description: Checks usages of Object#freeze on immutable objects.
+    Enabled: true
+Style/RedundantInterpolation:
+    Description: Checks for strings that are just an interpolated expression.
+    Enabled: true
+Style/RedundantParentheses:
+    Description: Checks for parentheses that seem not to serve any purpose.
+    Enabled: true
+Style/RedundantPercentQ:
+    Description: Checks for %q/%Q when single quotes or double quotes would do.
+    Enabled: true
+Style/RedundantRegexpCharacterClass:
+    Description: Checks for unnecessary single-element Regexp character classes.
+    Enabled: true
+Style/RedundantRegexpEscape:
+    Description: Checks for redundant escapes in Regexps.
+    Enabled: true
+Style/RedundantReturn:
+    Description: Don't use return where it's not required.
+    Enabled: true
+    AllowMultipleReturnValues: false
+Style/RedundantSelf:
+    Description: Don't use self where it's not needed.
+    Enabled: true
+Style/RedundantSelfAssignment:
+    Description: Checks for places where redundant assignments are made for in place
+        modification methods.
+    Enabled: true
+    Safe: false
+Style/RedundantSort:
+    Description: Use `min` instead of `sort.first`, `max_by` instead of `sort_by...last`,
+        etc.
+    Enabled: true
+Style/RedundantSortBy:
+    Description: Use `sort` instead of `sort_by { |x| x }`.
+    Enabled: true
+Style/RegexpLiteral:
+    Description: Use / or %r around regular expressions.
+    Enabled: true
+    EnforcedStyle: slashes
+    AllowInnerSlashes: false
+Style/RescueModifier:
+    Description: Avoid using rescue in its modifier form.
+    Enabled: true
+Style/RescueStandardError:
+    Description: Avoid rescuing without specifying an error class.
+    Enabled: true
+    EnforcedStyle: explicit
+Style/ReturnNil:
+    Description: Use return instead of return nil.
+    Enabled: true
+    EnforcedStyle: return
+Style/SafeNavigation:
+    Description: This cop transforms usages of a method call safeguarded by a check
+        for the existence of the object to safe navigation (`&.`).
+    Enabled: true
+    ConvertCodeThatCanStartToReturnNil: false
+    AllowedMethods:
+    - present?
+    - blank?
+    - presence
+    - try
+    - try!
+Style/Sample:
+    Description: Use `sample` instead of `shuffle.first`, `shuffle.last`, and `shuffle[Integer]`.
+    Reference: https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code
+    Enabled: true
+Style/SelfAssignment:
+    Description: Checks for places where self-assignment shorthand should have been
+        used.
+    Enabled: true
+Style/Semicolon:
+    Description: Don't use semicolons to terminate expressions.
+    Enabled: true
+    AllowAsExpressionSeparator: false
+Style/Send:
+    Description: Prefer `Object#__send__` or `Object#public_send` to `send`, as `send`
+        may overlap with existing methods.
+    Enabled: true
+Style/SignalException:
+    Description: Checks for proper usage of fail and raise.
+    Enabled: true
+    EnforcedStyle: only_raise
+Style/SingleArgumentDig:
+    Description: Avoid using single argument dig method.
+    Enabled: true
+    Safe: false
+Style/SingleLineBlockParams:
+    Description: Enforces the names of some block params.
+    Enabled: true
+    Methods:
+    -   reduce:
+        - accumlator
+        - element
+Style/SingleLineMethods:
+    Description: Avoid single-line methods.
+    Enabled: true
+    AllowIfMethodIsEmpty: true
+Style/SlicingWithRange:
+    Description: Checks array slicing is done with endless ranges when suitable.
+    Enabled: true
+    Safe: false
+Style/SoleNestedConditional:
+    Description: Finds sole nested conditional nodes which can be merged into outer
+        conditional node.
+    Enabled: true
+    AllowModifier: false
+Style/SpecialGlobalVars:
+    Description: Avoid Perl-style global variables.
+    Enabled: true
+    SafeAutoCorrect: false
+    EnforcedStyle: use_english_names
+Style/StabbyLambdaParentheses:
+    Description: Check for the usage of parentheses around stabby lambda arguments.
+    Enabled: true
+    EnforcedStyle: require_parentheses
+Style/StderrPuts:
+    Description: Use `warn` instead of `$stderr.puts`.
+    Enabled: true
+Style/StringConcatenation:
+    Description: Checks for places where string concatenation can be replaced with
+        string interpolation.
+    Enabled: true
+    Safe: false
+Style/StringHashKeys:
+    Description: Prefer symbols instead of strings as hash keys.
+    Enabled: true
+    Safe: false
+Style/StringLiterals:
+    Description: Checks if uses of quotes match the configured preference.
+    Enabled: true
+    EnforcedStyle: single_quotes
+    ConsistentQuotesInMultiline: false
+Style/StringLiteralsInInterpolation:
+    Description: Checks if uses of quotes inside expressions in interpolated strings
+        match the configured preference.
+    Enabled: true
+    EnforcedStyle: single_quotes
+Style/StringMethods:
+    Description: Checks if configured preferred methods are used over non-preferred.
+    Enabled: true
+    PreferredMethods:
+        intern: to_sym
+Style/Strip:
+    Description: Use `strip` instead of `lstrip.rstrip`.
+    Enabled: true
+Style/StructInheritance:
+    Description: Checks for inheritance from Struct.new.
+    Enabled: true
+Style/SymbolArray:
+    Description: Use %i or %I for arrays of symbols.
+    Enabled: true
+    EnforcedStyle: percent
+    MinSize: 1
+Style/SymbolLiteral:
+    Description: Use plain symbols instead of string symbols when possible.
+    Enabled: true
+Style/SymbolProc:
+    Description: Use symbols as procs instead of blocks when possible.
+    Enabled: true
+    Safe: false
+    IgnoredMethods:
+    - respond_to
+    - define_method
+Style/TernaryParentheses:
+    Description: Checks for use of parentheses around ternary conditions.
+    Enabled: true
+    EnforcedStyle: require_no_parentheses
+    AllowSafeAssignment: true
+Style/TrailingBodyOnClass:
+    Description: Class body goes below class statement.
+    Enabled: true
+Style/TrailingBodyOnMethodDefinition:
+    Description: Method body goes below definition.
+    Enabled: true
+Style/TrailingBodyOnModule:
+    Description: Module body goes below module statement.
+    Enabled: true
+Style/TrailingCommaInArguments:
+    Description: Checks for trailing comma in argument lists.
+    Enabled: true
+    EnforcedStyleForMultiline: no_comma
+    SupportedStylesForMultiline:
+    - comma
+    - consistent_comma
+    - no_comma
+Style/TrailingCommaInArrayLiteral:
+    Description: Checks for trailing comma in array literals.
+    Enabled: true
+    EnforcedStyleForMultiline: no_comma
+    SupportedStylesForMultiline:
+    - comma
+    - consistent_comma
+    - no_comma
+Style/TrailingCommaInBlockArgs:
+    Description: Checks for useless trailing commas in block arguments.
+    Enabled: true
+    Safe: false
+Style/TrailingCommaInHashLiteral:
+    Description: Checks for trailing comma in hash literals.
+    Enabled: true
+    EnforcedStyleForMultiline: no_comma
+    SupportedStylesForMultiline:
+    - comma
+    - consistent_comma
+    - no_comma
+Style/TrailingMethodEndStatement:
+    Description: Checks for trailing end statement on line of method body.
+    Enabled: true
+Style/TrailingUnderscoreVariable:
+    Description: Checks for the usage of unneeded trailing underscores at the end
+        of parallel variable assignment.
+    AllowNamedUnderscoreVariables: true
+    Enabled: true
+Style/TrivialAccessors:
+    Description: Prefer attr_* methods to trivial readers/writers.
+    Enabled: true
+    ExactNameMatch: true
+    AllowPredicates: true
+    AllowDSLWriters: false
+    IgnoreClassMethods: false
+    AllowedMethods:
+    - to_ary
+    - to_a
+    - to_c
+    - to_enum
+    - to_h
+    - to_hash
+    - to_i
+    - to_int
+    - to_io
+    - to_open
+    - to_path
+    - to_proc
+    - to_r
+    - to_regexp
+    - to_str
+    - to_s
+    - to_sym
+Style/UnlessElse:
+    Description: Do not use unless with else. Rewrite these with the positive case
+        first.
+    Enabled: true
+Style/UnpackFirst:
+    Description: Checks for accessing the first element of `String#unpack` instead
+        of using `unpack1`.
+    Enabled: true
+Style/VariableInterpolation:
+    Description: Don't interpolate global, instance and class variables directly in
+        strings.
+    Enabled: true
+Style/WhenThen:
+    Description: Use when x then ... for one-line cases.
+    Enabled: true
+Style/WhileUntilDo:
+    Description: Checks for redundant do after while or until.
+    Enabled: true
+Style/WhileUntilModifier:
+    Description: Favor modifier while/until usage when you have a single-line body.
+    Enabled: true
+Style/WordArray:
+    Description: Use %w or %W for arrays of words.
+    Enabled: true
+    EnforcedStyle: percent
+    MinSize: 1
+    WordRegex: !ruby/regexp /\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z/
+Style/YodaCondition:
+    Description: Forbid or enforce yoda conditions.
+    Reference: https://en.wikipedia.org/wiki/Yoda_conditions
+    Enabled: true
+    EnforcedStyle: forbid_for_all_comparison_operators
+    Safe: false
+Style/ZeroLengthPredicate:
+    Description: 'Use #empty? when testing for objects of length 0.'
+    Enabled: true
+    Safe: false
