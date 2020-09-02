@@ -60,6 +60,27 @@ All configuration goes to [default.yml][config] file.
 - [`rubocop-rspec` defaults][rubocop-rspec-defaults] & [RSpec styleguide][rspec-styleguide]
 - [`rubocop-performance` defaults][rubocop-performance-defaults]
 
+## Enable pending cops
+
+The gem comes with an executable:
+
+```bash
+enable_pending_cops
+```
+
+To enable pending cops in the repository, simply run:
+
+```bash
+ruby bin/enable_pending_cops
+```
+
+This will:
+
+1. Override all cops marked as `Enabled: pending` in the latest core or extensions' versions installed.
+2. Automatically generate the _.rubocop_todo.yml_ file, without generating `Max: n` directives.
+
+This way you can safely update the code, one by one.
+
 ## Publish to Rubygems
 
 In order to publish new version of the gem follow the steps:

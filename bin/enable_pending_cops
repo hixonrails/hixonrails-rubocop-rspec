@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/enabler/main'
+
+Enabler::Main.run
+
+# `bundle exec rubocop --auto-correct`
+`bundle exec rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 10000`
