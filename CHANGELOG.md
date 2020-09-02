@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.0.1] - 2020-09-02
+### Changed
+- Required Ruby version from 2.7.1 to 2.6.5
+### Fixed
+- Layout/ClassStructure - changed configuration option SafeAutoCorrect to AutoCorrect
+
 ## [1.0.0] - 2020-09-02
 ### Added
 - Latest RuboCop version with following extensions:
