@@ -141,6 +141,7 @@ Layout/CaseIndentation:
 Layout/ClassStructure:
     Description: Enforces a configured order of definitions within a class body.
     Enabled: true
+    SafeAutoCorrect: false
     Categories:
         module_inclusion:
         - extend
@@ -155,6 +156,8 @@ Layout/ClassStructure:
         - has_one
         - has_many
         macros:
+        - public_constant
+        - private_constant
         - act_as_paranoid
         - commentable
         - flag
@@ -1413,6 +1416,10 @@ RSpec/ExampleLength:
     Description: Checks for long examples.
     Enabled: true
     Max: 5
+    Exclude:
+      - spec/requests/**/*
+      - spec/features/**/*
+      - spec/routing/**/*
 RSpec/ExampleWithoutDescription:
     Description: Checks for examples without a description.
     Enabled: true
