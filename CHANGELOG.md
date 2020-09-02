@@ -6,3 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.0.0] - 2020-09-02
+### Added
+- Latest RuboCop version with following extensions:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+- Custom configuration for all the RuboCop extensions
+- Continuous Delivery system to rubygems.org
+- Binary to enable pending cops of the latest RuboCop gems versions
+- Gem specification file
+- All the repository's meta-files, such as LICENSE, README, CONTRIBUTING and CHANGELOG
