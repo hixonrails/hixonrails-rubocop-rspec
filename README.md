@@ -1,15 +1,17 @@
-# hixonrails-rubocop-rspec
+# rubocop-hixonrails
 
 [![Gem Version][gem-version-img]][gem-version]
 [![Build Status][build-status-img]][build-status]
 
-RuboCop rules for Hix on Rails projects that use RSpec. Includes:
+RuboCop rules for [Hix on Rails][hixonrails] projects that use RSpec. Includes:
 
 - [`rubocop`][rubocop]
 - [`rubocop-performance`][rubocop-performance]
+- [`rubocop-rails`][rubocop-rails]
+- [`rubocop-rake`][rubocop-rake]
 - [`rubocop-rspec`][rubocop-rspec]
 
-If you create Ruby on Rails project, **use gem [`hixonrails-rubocop-rspec-rails`][hixonrails-rubocop-rspec-rails] instead.**
+Easily extensible, created by [Hix on Rails][hixonrails].
 
 ## Installation
 
@@ -17,7 +19,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 group :test, :development do
-  gem 'hixonrails-rubocop-rspec'
+  gem 'rubocop-hixonrails'
 end
 ```
 
@@ -27,7 +29,7 @@ Gemfile, this single one will suffice.
 For a Ruby library, add this to your gemspec:
 
 ```ruby
-spec.add_development_dependency 'hixonrails-rubocop-rspec'
+spec.add_development_dependency 'rubocop-hixonrails'
 ```
 
 And then run:
@@ -42,7 +44,7 @@ Create a `.rubocop.yml` with the following directives:
 
 ```yaml
 inherit_gem:
-  hixonrails-rubocop-rspec:
+  rubocop-hixonrails:
     - default.yml
 ```
 
@@ -86,28 +88,29 @@ This way you can safely update the code, one by one.
 In order to publish new version of the gem follow the steps:
 
 1. `git hf release start X.Y.Z`
-2. bump up version in [`HixOnRailsRuboCopRSpec::VERSION`][gem-version-path]
+2. bump up version in [`RubocopHixonrails::VERSION`][gem-version-path]
 3. `git commit -am 'UPD version to X.Y.Z'`
 4. `git hf release finish X.Y.Z`
-5. `bundle update hixonrails-rubocop-rspec` in projects that use it
-6. update `rubocop-rubocop-rails` gem in [`hixonrails-rubocop-rspec-rails`][hixonrails-rubocop-rspec-rails] gem
+5. `bundle update rubocop-hixonrails` in projects that use it
 
 The `gem push` script is set up on CircleCI upon `git hf release finish`, as per
 [Publishing RubyGems using Circle CI 2.0 article][publishing-rubygems-using-circleci].
 
+[hixonrails]: https://hixonrails.com
 [rubocop]: https://github.com/rubocop-hq/rubocop
 [rubocop-performance]: https://github.com/rubocop-hq/rubocop-performance
+[rubocop-rails]: https://github.com/rubocop-hq/rubocop-rails
+[rubocop-rake]: https://github.com/rubocop-hq/rubocop-rake
 [rubocop-rspec]: https://github.com/rubocop-hq/rubocop-rspec
-[hixonrails-rubocop-rspec-rails]: https://github.com/hixonrails/hixonrails-rubocop-rspec-rails
 [publishing-rubygems-using-circleci]: https://medium.com/@pezholio/publishing-rubygems-using-circle-ci-2-0-1dbf06ae9942
-[gem-version-path]: https://github.com/hixonrails/hixonrails-rubocop-rspec/blob/master/lib/rubocop_rubocop_rspec.rb#L4
-[config]: https://github.com/hixonrails/hixonrails-rubocop-rspec/blob/master/default.yml
+[gem-version-path]: https://github.com/hixonrails/rubocop-hixonrails/blob/master/lib/rubocop_hixonrails.rb#L4
+[config]: https://github.com/hixonrails/rubocop-hixonrails/blob/master/default.yml
 [rubocop-defaults]: https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
 [ruby-styleguide]: https://rubystyle.guide/
 [rubocop-rspec-defaults]: https://github.com/rubocop-hq/rubocop-rspec/blob/master/config/default.yml
 [rspec-styleguide]: https://rspec.rubystyle.guide/
 [rubocop-performance-defaults]: https://github.com/rubocop-hq/rubocop-performance/blob/master/config/default.yml
-[gem-version]: https://rubygems.org/gems/hixonrails-rubocop-rspec
-[build-status]: https://circleci.com/gh/hixonrails/hixonrails-rubocop-rspec/tree/master
-[gem-version-img]: https://badge.fury.io/rb/hixonrails-rubocop-rspec.svg
-[build-status-img]: https://circleci.com/gh/hixonrails/hixonrails-rubocop-rspec/tree/master.svg?style=shield
+[gem-version]: https://rubygems.org/gems/rubocop-hixonrails
+[build-status]: https://circleci.com/gh/hixonrails/rubocop-hixonrails/tree/master
+[gem-version-img]: https://badge.fury.io/rb/rubocop-hixonrails.svg
+[build-status-img]: https://circleci.com/gh/hixonrails/rubocop-hixonrails/tree/master.svg?style=shield
