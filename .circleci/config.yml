@@ -1,0 +1,57 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/rubocop-hixonrails
+    docker:
+      - image: circleci/ruby:2.7.1
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+
+jobs:
+  install_build_lint:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run:
+          name: Install bundle
+          command: bundle install --path vendor/bundle
+      - run:
+          name: Build gem
+          command: gem build rubocop_hixonrails.gemspec --backtrace --strict --verbose
+      - run:
+          name: Lint code
+          command: bundle exec rubocop
+
+  publish:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: Setup RubyGems
+          command: sh .circleci/setup-rubygems.sh
+      - run:
+          name: Publish to RubyGems
+          command: |
+            gem build rubocop_hixonrails.gemspec --backtrace --strict --verbose
+            gem push "rubocop-hixonrails-$(git describe --abbrev=0).gem"
+
+workflows:
+  install-build-lint-publish:
+    jobs:
+      - install_build_lint
+      - publish:
+          context: rubygems
+          requires:
+            - install_build_lint
+          filters:
+            branches:
+              only: master
