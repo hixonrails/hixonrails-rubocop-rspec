@@ -141,7 +141,7 @@ Layout/CaseIndentation:
 Layout/ClassStructure:
     Description: Enforces a configured order of definitions within a class body.
     Enabled: true
-    SafeAutoCorrect: false
+    AutoCorrect: false
     Categories:
         module_inclusion:
         - extend
