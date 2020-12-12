@@ -5,9 +5,6 @@ inherit_from:
 Rails:
   Enabled: false
 
-RSpec:
-  Enabled: false
-
 Style/StringHashKeys:
   Exclude:
     - 'lib/enabler/main.rb'

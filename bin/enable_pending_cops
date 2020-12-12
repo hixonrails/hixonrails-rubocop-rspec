@@ -3,6 +3,8 @@
 
 require_relative '../lib/enabler/main'
 
+`mkdir -p tmp`
+
 Enabler::Main.run
 
 # `bundle exec rubocop --auto-correct`
