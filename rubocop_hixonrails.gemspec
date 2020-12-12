@@ -25,10 +25,10 @@ Gem::Specification.new do |spec|
     - rubocop-rake.
     Easily extensible, created by Hix on Rails.
   DESCRIPTION
-  spec.add_dependency('rubocop', '~> 0.90')
-  spec.add_dependency('rubocop-performance', '~> 1.7.1')
-  spec.add_dependency('rubocop-rails', '~> 2.7.1')
+  spec.add_dependency('rubocop', '~> 1.6.1')
+  spec.add_dependency('rubocop-performance', '~> 1.9.1')
+  spec.add_dependency('rubocop-rails', '~> 2.9.0')
   spec.add_dependency('rubocop-rake', '~> 0.5.1')
-  spec.add_dependency('rubocop-rspec', '~> 1.43.2')
+  spec.add_dependency('rubocop-rspec', '~> 2.0.1')
   spec.required_ruby_version = '>= 2.6.5'
 end
